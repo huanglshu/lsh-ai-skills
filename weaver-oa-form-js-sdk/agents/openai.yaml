@@ -1,0 +1,4 @@
+interface:
+  display_name: "Weaver OA Form JS SDK"
+  short_description: "泛微表单 JS 代码块与 WfForm API 技能"
+  default_prompt: "Use $weaver-oa-form-js-sdk to look up the local Weaver OA form SDK and produce a code-block-ready WfForm solution."

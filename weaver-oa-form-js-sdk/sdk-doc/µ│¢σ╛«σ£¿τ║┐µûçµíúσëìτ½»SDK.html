@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<!-- saved from url=(0138)https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#2.%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>泛微在线文档</title>
+    <link rel="stylesheet" href="./泛微在线文档前端 SDK_files/editormd.preview.css">
+    <link rel="stylesheet" href="./泛微在线文档前端 SDK_files/editormd.min.css">
+    <link rel="stylesheet" href="./泛微在线文档前端 SDK_files/viewer.min.css">
+    <style>
+        .not-access-content {
+            font-size: 20px;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .tips-msg {
+            top: 7%;
+            left: 50%;
+            right: 50%;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #d9d9d9;
+            -webkit-box-shadow: 0 1px 8px hsl(0deg 0% 39% / 20%);
+            box-shadow: 0 1px 8px hsl(0deg 0% 39% / 20%);
+            background: #fff;
+            display: inline-table;
+            width: auto;
+            vertical-align: middle;
+            position: absolute;
+        }
+    </style>
+<link type="text/css" rel="stylesheet" href="./泛微在线文档前端 SDK_files/katex.min.css"><script id="-cdnjs-cloudflare-com-ajax-libs-KaTeX-0-3-0-katex-min" type="text/javascript" src="./泛微在线文档前端 SDK_files/katex.min.js"></script></head>
+<body>
+<div id="layout">
+    <div class="markdown-layout" style="">
+        <div id="sidebar">
+            <div class="markdown-body editormd-preview-container" id="custom-toc-container" previewcontainer="false"><div class="markdown-toc editormd-markdown-toc"><ul class="markdown-toc-list"><li><a class="toc-level-1" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#E9%E6%B5%81%E7%A8%8B%E8%A1%A8%E5%8D%95%E5%89%8D%E7%AB%AF%E6%8E%A5%E5%8F%A3API" level="1">E9流程表单前端接口API</a><ul><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.%E8%AF%B4%E6%98%8E" level="2">1.说明</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.1%20%E7%AE%80%E4%BB%8B" level="3">1.1 简介</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.2%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E5%AE%B9" level="3">1.2 移动端兼容</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.3%20%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F" level="3">1.3 前端代码开发方式</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.4%20PC%E7%AB%AF%E6%89%93%E5%BC%80%E8%A1%A8%E5%8D%95%E7%9A%84%E6%96%B9%E5%BC%8F" level="3">1.4 PC端打开表单的方式</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#1.5%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%93%E5%BC%80%E8%A1%A8%E5%8D%95%E7%9A%84%E6%96%B9%E5%BC%8F" level="3">1.5 移动端打开表单的方式</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#2.%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" level="2">2.注册自定义事件</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#2.1%20%E6%B3%A8%E5%86%8C%E6%8B%A6%E6%88%AA%E4%BA%8B%E4%BB%B6%EF%BC%8C%E6%8C%87%E5%AE%9A%E5%8A%A8%E4%BD%9C%E6%89%A7%E8%A1%8C%E5%89%8D%E8%A7%A6%E5%8F%91%EF%BC%8C%E5%B9%B6%E5%8F%AF%E9%98%BB%E6%96%AD/%E6%94%BE%E8%A1%8C%E5%90%8E%E7%BB%AD%E6%93%8D%E4%BD%9C" level="3">2.1 注册拦截事件，指定动作执行前触发，并可阻断/放行后续操作</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#2.2%20%E6%B3%A8%E5%86%8C%E9%92%A9%E5%AD%90%E4%BA%8B%E4%BB%B6%EF%BC%8C%E6%8C%87%E5%AE%9A%E5%8A%A8%E4%BD%9C%E5%AE%8C%E6%88%90%E5%90%8E%E8%A7%A6%E5%8F%91" level="3">2.2 注册钩子事件，指定动作完成后触发</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.%E5%AD%97%E6%AE%B5%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E6%8E%A5%E5%8F%A3(%E4%B8%8D%E9%80%82%E7%94%A8%E9%99%84%E4%BB%B6%E3%80%81%E4%BD%8D%E7%BD%AE%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B)" level="2">3.字段基础操作接口(不适用附件、位置字段类型)</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.1%20%E5%B0%86%E5%AD%97%E6%AE%B5%E5%90%8D%E7%A7%B0%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AD%97%E6%AE%B5id" level="3">3.1 将字段名称转换成字段id</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.2%20%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E5%80%BC" level="3">3.2 获取单个字段值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.3%20%E4%BF%AE%E6%94%B9%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E5%80%BC%EF%BC%88%E4%B8%8D%E6%94%AF%E6%8C%81%E9%99%84%E4%BB%B6%E7%B1%BB%E5%9E%8B%EF%BC%89" level="3">3.3 修改单个字段值（不支持附件类型）</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.4%20%E6%94%B9%E5%8F%98%E5%8D%95%E4%B8%AA%E5%AD%97%E6%AE%B5%E6%98%BE%E7%A4%BA%E5%B1%9E%E6%80%A7(%E5%8F%AA%E8%AF%BB/%E5%BF%85%E5%A1%AB%E7%AD%89)" level="3">3.4 改变单个字段显示属性(只读/必填等)</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.5%20%E5%90%8C%E6%97%B6%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC%E5%8F%8A%E6%98%BE%E7%A4%BA%E5%B1%9E%E6%80%A7" level="3">3.5 同时修改字段的值及显示属性</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.6%20%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E5%80%BC%E6%88%96%E6%98%BE%E7%A4%BA%E5%B1%9E%E6%80%A7" level="3">3.6 批量修改字段值或显示属性</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.7%20%E8%A7%A6%E5%8F%91%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5%E6%B6%89%E5%8F%8A%E7%9A%84%E6%89%80%E6%9C%89%E8%81%94%E5%8A%A8%EF%BC%88%E5%BD%92%E6%A1%A3%E8%B0%83%E7%94%A8%E6%97%A0%E6%95%88%EF%BC%89" level="3">3.7 触发指定字段涉及的所有联动（归档调用无效）</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.8%20%E6%A0%B9%E6%8D%AE%E5%AD%97%E6%AE%B5ID%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E4%BF%A1%E6%81%AF" level="3">3.8 根据字段ID获取字段信息</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#3.9%20%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E5%BD%93%E5%89%8D%E7%9A%84%E5%8F%AA%E8%AF%BB/%E5%BF%85%E5%A1%AB%E5%B1%9E%E6%80%A7" level="3">3.9 获取字段当前的只读/必填属性</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.%E8%A1%A8%E5%8D%95%E5%AD%97%E6%AE%B5%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93" level="2">4.表单字段事件绑定、自定义渲染</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.1%20%20%E8%A1%A8%E5%8D%95%E5%AD%97%E6%AE%B5%E5%80%BC%E5%8F%98%E5%8C%96%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6" level="3">4.1  表单字段值变化触发事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.2%20%20%E6%98%8E%E7%BB%86%E5%AD%97%E6%AE%B5%E5%80%BC%E5%8F%98%E5%8C%96%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6" level="3">4.2  明细字段值变化触发事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.3%20%E5%AD%97%E6%AE%B5%E5%8C%BA%E5%9F%9F%E7%BB%91%E5%AE%9A%E5%8A%A8%E4%BD%9C%E4%BA%8B%E4%BB%B6" level="3">4.3 字段区域绑定动作事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.4%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%90%86%E6%B8%B2%E6%9F%93%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC%E6%A1%86%E5%AD%97%E6%AE%B5" level="3">4.4 自定义代理渲染单行文本框字段</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.5%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%BD%E5%8A%A0%E6%B8%B2%E6%9F%93%E8%A1%A8%E5%8D%95%E5%AD%97%E6%AE%B5" level="3">4.5 自定义追加渲染表单字段</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.6%20%E5%87%BD%E6%95%B0%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93%E8%A1%A8%E5%8D%95%E5%AD%97%E6%AE%B5" level="3">4.6 函数式自定义渲染表单字段</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#4.7%20%E6%A0%B9%E6%8D%AE%E5%AD%97%E6%AE%B5%E6%A0%87%E8%AF%86%E8%8E%B7%E5%8F%96%E5%AD%97%E6%AE%B5%E7%BB%84%E4%BB%B6" level="3">4.7 根据字段标识获取字段组件</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.%E6%98%8E%E7%BB%86%E8%A1%A8%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3" level="2">5.明细表操作相关接口</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.1%20%E6%B7%BB%E5%8A%A0%E6%98%8E%E7%BB%86%E8%A1%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%88%9D%E5%A7%8B%E5%80%BC" level="3">5.1 添加明细行并设置初始值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.2%20%E5%88%A0%E9%99%A4%E6%98%8E%E7%BB%86%E8%A1%A8%E6%8C%87%E5%AE%9A%E8%A1%8C/%E5%85%A8%E9%83%A8%E8%A1%8C" level="3">5.2 删除明细表指定行/全部行</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.3%20%E9%80%89%E4%B8%AD%E6%98%8E%E7%BB%86%E6%8C%87%E5%AE%9A%E8%A1%8C/%E5%85%A8%E9%83%A8%E8%A1%8C" level="3">5.3 选中明细指定行/全部行</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.4%20%E8%8E%B7%E5%8F%96%E6%98%8E%E7%BB%86%E8%A1%8C%E6%89%80%E6%9C%89%E8%A1%8C%E6%A0%87%E7%A4%BA" level="3">5.4 获取明细行所有行标示</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.5%20%E8%8E%B7%E5%8F%96%E6%98%8E%E7%BB%86%E9%80%89%E4%B8%AD%E8%A1%8C%E4%B8%8B%E6%A0%87" level="3">5.5 获取明细选中行下标</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.6%20%E6%8E%A7%E5%88%B6%E6%98%8E%E7%BB%86%E8%A1%8Ccheck%E6%A1%86%E6%98%AF%E5%90%A6%E7%A6%81%E7%94%A8%E5%8B%BE%E9%80%89" level="3">5.6 控制明细行check框是否禁用勾选</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.7%20%E6%8E%A7%E5%88%B6%E6%98%8E%E7%BB%86%E6%95%B0%E6%8D%AE%E8%A1%8C%E7%9A%84%E6%98%BE%E7%A4%BA%E5%8F%8A%E9%9A%90%E8%97%8F" level="3">5.7 控制明细数据行的显示及隐藏</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.8%20%E8%8E%B7%E5%8F%96%E6%98%8E%E7%BB%86%E5%B7%B2%E6%9C%89%E8%A1%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE" level="3">5.8 获取明细已有行的数据库主键</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.9%20%E8%8E%B7%E5%8F%96%E6%98%8E%E7%BB%86%E6%80%BB%E8%A1%8C%E6%95%B0" level="3">5.9 获取明细总行数</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.10%20%E6%B7%BB%E5%8A%A0%E8%A1%8C%E3%80%81%E5%88%A0%E9%99%A4%E8%A1%8C%E5%89%8D%E6%89%A7%E8%A1%8C%E9%80%BB%E8%BE%91%E6%88%96%E9%98%BB%E6%96%AD%E4%BA%8B%E4%BB%B6" level="3">5.10 添加行、删除行前执行逻辑或阻断事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.11%20%E6%B7%BB%E5%8A%A0%E8%A1%8C%E3%80%81%E5%88%A0%E9%99%A4%E8%A1%8C%E5%90%8E%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6" level="3">5.11 添加行、删除行后触发事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.12%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%B3%E8%BD%AC%E8%87%B3%E6%98%8E%E7%BB%86%E7%BC%96%E8%BE%91%E8%A1%8C%E9%A1%B5%E9%9D%A2%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6" level="3">5.12 移动端跳转至明细编辑行页面执行事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.13%20%20%E6%B7%BB%E5%8A%A0%E6%98%8E%E7%BB%86%E6%97%B6%E9%BB%98%E8%AE%A4%E5%A4%8D%E5%88%B6%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E8%AE%B0%E5%BD%95" level="3">5.13  添加明细时默认复制最后一行记录</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#5.14%20%E6%A0%B9%E6%8D%AE%E6%98%8E%E7%BB%86%E8%A1%8C%E6%A0%87%E8%AF%86%E8%8E%B7%E5%8F%96%E5%BA%8F%E5%8F%B7(%E7%AC%AC%E5%87%A0%E8%A1%8C)" level="3">5.14 根据明细行标识获取序号(第几行)</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.%E5%B8%B8%E7%94%A8%E5%85%A8%E5%B1%80%E6%8E%A5%E5%8F%A3(%E4%B8%8E%E5%AD%97%E6%AE%B5%E6%97%A0%E5%85%B3)" level="2">6.常用全局接口(与字段无关)</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.1%20%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%89%93%E5%BC%80%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF" level="3">6.1 获取当前打开请求的基础信息</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.2%20%E5%8F%AF%E6%8E%A7%E5%88%B6%E6%98%BE%E7%A4%BA%E6%97%B6%E9%97%B4%E7%9A%84message%E4%BF%A1%E6%81%AF" level="3">6.2 可控制显示时间的message信息</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.3%20%E7%B3%BB%E7%BB%9F%E6%A0%B7%E5%BC%8F%E7%9A%84Confirm%E7%A1%AE%E8%AE%A4%E6%A1%86" level="3">6.3 系统样式的Confirm确认框</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.4%20%E8%A1%A8%E5%8D%95%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE%E3%80%81%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E7%BD%AE%E7%81%B0" level="3">6.4 表单顶部按钮、右键菜单置灰</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.5%20%E8%B0%83%E7%94%A8%E5%8F%B3%E9%94%AE%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6" level="3">6.5 调用右键按钮事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.6%20%E5%88%B7%E6%96%B0%E8%A1%A8%E5%8D%95%E9%A1%B5%E9%9D%A2" level="3">6.6 刷新表单页面</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.7%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5%E6%96%B9%E5%BC%8F" level="3">6.7 移动端打开链接方式</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.8%20%E6%89%A9%E5%B1%95%E6%8F%90%E4%BA%A4%E6%93%8D%E4%BD%9C%E5%8F%91%E9%80%81%E7%BB%99%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E5%8F%82%E6%95%B0" level="3">6.8 扩展提交操作发送给服务端的参数</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.9%20%E8%8E%B7%E5%8F%96%E6%A0%A1%E9%AA%8C%E5%BF%85%E5%A1%AB%E9%80%BB%E8%BE%91%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%AA%E5%BF%85%E5%A1%AB%E7%9A%84%E5%AD%97%E6%AE%B5" level="3">6.9 获取校验必填逻辑第一个未必填的字段</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#6.10%20%E8%A7%A6%E5%8F%91%E4%B8%80%E6%AC%A1%E5%BF%85%E5%A1%AB%E9%AA%8C%E8%AF%81" level="3">6.10 触发一次必填验证</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.%E4%B8%8D%E5%90%8C%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E7%89%B9%E5%AE%9A%E6%8E%A5%E5%8F%A3(%E9%99%90%E5%AE%9A%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E5%8F%AF%E7%94%A8)" level="2">7.不同字段类型特定接口(限定指定字段类型可用)</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.1%20%E6%89%A9%E5%B1%95%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E5%8F%96%E6%95%B0%E6%8E%A5%E5%8F%A3%E5%8F%82%E6%95%B0%E5%80%BC" level="3">7.1 扩展浏览按钮取数接口参数值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.2%20%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E7%9A%84%E6%98%BE%E7%A4%BA%E5%80%BC" level="3">7.2 获取浏览按钮的显示值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.3%20%E7%A7%BB%E9%99%A4%E9%80%89%E6%8B%A9%E6%A1%86%E5%AD%97%E6%AE%B5%E9%80%89%E9%A1%B9" level="3">7.3 移除选择框字段选项</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.4%20%E6%8E%A7%E5%88%B6%E9%80%89%E6%8B%A9%E6%A1%86%E5%AD%97%E6%AE%B5%E9%80%89%E9%A1%B9" level="3">7.4 控制选择框字段选项</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.5%20%E8%8E%B7%E5%8F%96%E9%80%89%E6%8B%A9%E6%A1%86%E5%AD%97%E6%AE%B5%E7%9A%84%E6%98%BE%E7%A4%BA%E5%80%BC" level="3">7.5 获取选择框字段的显示值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.6%20%E6%96%87%E6%9C%AC%E5%AD%97%E6%AE%B5%E5%8F%AF%E7%BC%96%E8%BE%91%E7%8A%B6%E6%80%81%EF%BC%8C%E5%BD%93%E5%80%BC%E4%B8%BA%E7%A9%BA%E6%98%BE%E7%A4%BA%E9%BB%98%E8%AE%A4%E7%81%B0%E8%89%B2%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%EF%BC%8C%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E8%BE%93%E5%85%A5%E6%97%B6%E6%8F%90%E7%A4%BA%E6%B6%88%E5%A4%B1" level="3">7.6 文本字段可编辑状态，当值为空显示默认灰色提示信息，鼠标点击输入时提示消失</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.7%20%E5%A4%8D%E5%86%99%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E7%9A%84props" level="3">7.7 复写浏览按钮组件的props</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.8%20%E6%8E%A7%E5%88%B6%E6%97%A5%E6%9C%9F%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E7%9A%84%E5%8F%AF%E9%80%89%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4" level="3">7.8 控制日期浏览按钮的可选日期范围</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#7.9%20%E6%8E%A7%E5%88%B6Radio%E6%A1%86%E5%AD%97%E6%AE%B5%E6%89%93%E5%8D%B0%E6%98%AF%E5%90%A6%E4%BB%85%E6%98%BE%E7%A4%BA%E9%80%89%E4%B8%AD%E9%A1%B9%E6%96%87%E5%AD%97" level="3">7.9 控制Radio框字段打印是否仅显示选中项文字</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#8.%E7%AD%BE%E5%AD%97%E6%84%8F%E8%A7%81%E6%8E%A5%E5%8F%A3" level="2">8.签字意见接口</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#8.1%20%E8%8E%B7%E5%8F%96%E7%AD%BE%E5%AD%97%E6%84%8F%E8%A7%81%E5%86%85%E5%AE%B9" level="3">8.1 获取签字意见内容</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#8.2%20%E8%AE%BE%E7%BD%AE%E7%AD%BE%E5%AD%97%E6%84%8F%E8%A7%81%E5%86%85%E5%AE%B9" level="3">8.2 设置签字意见内容</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#8.3%20%E6%89%A9%E5%B1%95%E7%AD%BE%E5%AD%97%E6%84%8F%E8%A7%81%E8%BE%93%E5%85%A5%E6%A1%86%E5%BA%95%E9%83%A8%E6%8C%89%E9%92%AE" level="3">8.3 扩展签字意见输入框底部按钮</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.%E5%8E%86%E5%8F%B2E8%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E7%9B%B8%E5%85%B3%E5%85%BC%E5%AE%B9" level="2">9.历史E8代码块的相关兼容</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.1%20%E6%8F%90%E4%BA%A4%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0" level="3">9.1 提交事件执行自定义函数</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.2%20%E5%AD%97%E6%AE%B5%E5%80%BC%E5%8F%98%E5%8C%96%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6bindPropertyChange" level="3">9.2 字段值变化触发事件bindPropertyChange</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.3%20%E6%98%8E%E7%BB%86%E6%96%B0%E5%A2%9E%E8%A1%8C%E6%B8%B2%E6%9F%93%E5%90%8E%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6" level="3">9.3 明细新增行渲染后触发事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.4%20%E6%98%8E%E7%BB%86%E5%88%A0%E9%99%A4%E8%A1%8C%E6%B8%B2%E6%9F%93%E5%90%8E%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6" level="3">9.4 明细删除行渲染后触发事件</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.5%20%E4%BF%AE%E6%94%B9%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E5%AD%97%E6%AE%B5%E5%80%BCwindow._writeBackData" level="3">9.5 修改浏览按钮字段值window._writeBackData</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.6%20%E5%B0%91%E7%94%A8jQuery%E6%93%8D%E4%BD%9C" level="3">9.6 少用jQuery操作</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#9.7%20%E7%A6%81%E6%AD%A2JS%E5%8E%9F%E7%94%9F%E6%93%8D%E4%BD%9C" level="3">9.7 禁止JS原生操作</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F" level="2">10 常用配置文件修改方式</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.1%20%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81%E9%BB%98%E8%AE%A4%E5%AD%97%E4%BD%93" level="3">10.1 修改意见默认字体</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.2%20%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81%E9%BB%98%E8%AE%A4%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F" level="3">10.2 修改意见默认字体大小</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.3%20%E6%B5%81%E7%A8%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8F%E8%A7%88%E6%A1%86%E7%BC%93%E5%AD%98%E5%8A%9F%E8%83%BD%E5%BC%80%E5%85%B3" level="3">10.3 流程自定义浏览框缓存功能开关</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.4%20%E9%9D%9E%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AChtml%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81html%E6%A0%BC%E5%BC%8F" level="3">10.4 非多行文本html字段类型支持html格式</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.5%20PC%E7%AB%AF-%E6%B5%81%E7%A8%8B%E8%A1%A8%E5%8D%95%E6%98%BE%E7%A4%BA%E5%BA%95%E9%83%A8%E8%80%97%E6%97%B6%E4%BF%A1%E6%81%AF%E5%BC%80%E4%B8%AA(%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90%E7%94%A8)" level="3">10.5 PC端-流程表单显示底部耗时信息开个(调试分析用)</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.6%20%E6%98%8E%E7%BB%86%E5%BC%80%E5%90%AF%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E9%A6%96%E8%A1%8C(%E6%8C%89%E9%92%AE%E6%89%80%E5%9C%A8%E8%A1%8C)%E5%9B%BA%E5%AE%9A%E4%B8%8D%E8%B7%9F%E9%9A%8F%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%BB%9A%E5%8A%A8" level="3">10.6 明细开启横向滚动条情况下，首行(按钮所在行)固定不跟随滚动条滚动</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.7%20%E6%98%8E%E7%BB%86%E5%AD%97%E6%AE%B5%E5%90%88%E8%AE%A1%E7%BB%99%E4%B8%BB%E5%AD%97%E6%AE%B5%EF%BC%8C%E5%BD%93%E6%98%8E%E7%BB%86%E6%9C%AA%E6%B7%BB%E5%8A%A0%E8%A1%8C%EF%BC%8C%E8%B5%8B%E9%9B%B6%E5%80%BC%E6%88%96%E7%A9%BA%E5%80%BC" level="3">10.7 明细字段合计给主字段，当明细未添加行，赋零值或空值</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.8%20pc%E7%AB%AF-%E6%89%8B%E5%86%99%E7%AD%BE%E6%89%B9%E6%8C%89%E9%92%AE%E5%BC%80%E5%85%B3" level="3">10.8 pc端-手写签批按钮开关</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.9%20%E7%A7%BB%E5%8A%A8%E7%AB%AF-%E9%80%89%E6%8B%A9%E6%A1%86%E5%8D%95%E9%80%89%E6%A1%86%E7%B1%BB%E5%9E%8B%E6%98%BE%E7%A4%BA%E6%88%90radio%E6%95%88%E6%9E%9C%E5%BC%80%E5%85%B3" level="3">10.9 移动端-选择框单选框类型显示成radio效果开关</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#10.10%20%E7%A7%BB%E5%8A%A8%E7%AB%AF-%E8%A1%A8%E5%8D%95%E6%AD%A3%E6%96%87%E3%80%81%E9%99%84%E4%BB%B6%E7%AD%BE%E6%89%B9%E5%8A%9F%E8%83%BD%E5%BC%80%E5%85%B3" level="3">10.10 移动端-表单正文、附件签批功能开关</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#11%20%E5%B8%B8%E7%94%A8CSS%E6%A0%B7%E5%BC%8F%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB" level="2">11 常用CSS样式案例分享</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#11.1%20%E5%AE%9E%E7%8E%B0%E6%98%8E%E7%BB%86%E6%B7%BB%E5%8A%A0%E5%88%A0%E9%99%A4%E6%8C%89%E9%92%AE%E9%9D%A0%E5%B7%A6%E6%98%BE%E7%A4%BA" level="3">11.1 实现明细添加删除按钮靠左显示</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#11.2%20%E5%AE%9E%E7%8E%B0%E5%8D%95%E5%85%83%E6%A0%BC%E5%9B%BE%E7%89%87%E5%B1%85%E4%B8%AD%E3%80%81%E8%87%AA%E9%80%82%E5%BA%94%E7%BC%A9%E6%94%BE" level="3">11.2 实现单元格图片居中、自适应缩放</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#11.3%20%E6%8E%A7%E5%88%B6%E6%B5%8F%E8%A7%88%E6%8C%89%E9%92%AE%E9%93%BE%E6%8E%A5%E9%A2%9C%E8%89%B2" level="3">11.3 控制浏览按钮链接颜色</a></li><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#11.4%20%E6%8E%A7%E5%88%B6%E4%B8%BB%E8%A1%A8%E9%80%89%E6%8B%A9%E6%A1%86%E5%AD%97%E6%AE%B5%E6%9C%80%E5%B0%8F%E5%AE%BD%E5%BA%A6" level="3">11.4 控制主表选择框字段最小宽度</a></li></ul></li><li><a class="toc-level-2" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#12%20%E5%85%B6%E5%AE%83%E5%9C%BA%E6%99%AF%E5%88%86%E4%BA%AB" level="2">12 其它场景分享</a><ul><li><a class="toc-level-3" href="https://e-cloudstore.com/doc.html?appId=98cb7a20fae34aa3a7e3a3381dd8764e#12.1%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%82%E6%9E%84%E7%B3%BB%E7%BB%9F%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E5%90%8E%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%B7%E6%96%B0%E6%B5%81%E7%A8%8B%E5%88%97%E8%A1%A8" level="3">12.1 移动端异构系统提交表单后，如何刷新流程列表</a><ul></ul></li></ul></li></ul></li></ul></div></div>
+        </div>
+        <div class="sidebar-upfold"></div>
+        <!-- <div class="markdown-layout-draggable"></div> -->
+        <div id="md-editor" class="markdown-body editormd-html-preview">
+            
+        <h1 id="h1-e9-api"><a name="E9流程表单前端接口API" class="reference-link"></a><span class="header-link octicon octicon-link"></span>E9流程表单前端接口API</h1><h2 id="h2-1-"><a name="1.说明" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.说明</h2><h3 id="h3-1-1-"><a name="1.1 简介" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.1 简介</h3><blockquote>
+<p>所有接口统一封装在全局对象window.WfForm中</p>
+<p>部分接口存在使用范围，最低kb版本以及是否移动端/PC端独有。没有特殊注明情况下通用</p>
+<p>表单字段相关操作，不推荐使用jQuery，禁止原生JS直接操作DOM结构！</p>
+<p>大家开发过程中，推荐都使用API接口操作，由产品统一运维；同时使用API才能完整的兼容移动终端</p>
+</blockquote>
+<h3 id="h3-1-2-"><a name="1.2 移动端兼容" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.2 移动端兼容</h3><blockquote>
+<p>WfForm对象下接口，兼容新版移动端EM7</p>
+<p>由于API接口在PC端与移动端已经统一，为减少开发工作量以及后期维护成本；<br>故EM7表单在移动终端不再引入workflow_base表custompage4emoble列作为自定义页面，直接引入custompage列(与PC模板一致)作为自定义页面</p>
+<p>前端（JS方法）区分终端：</p>
+</blockquote>
+<p>可通过方法WfForm.isMobile()判断是否移动端</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">var</span><span class="pln"> isMobile </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">isMobile</span><span class="pun">();</span><span class="pln"> </span><span class="com">//true表示是eMobile、微信、钉钉等移动终端，false代表PC端</span></code></li></ol></pre><blockquote>
+<p>后端请求（自定义页面等）区分终端:</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">boolean</span><span class="pln"> isMobile </span><span class="pun">=</span><span class="pln"> </span><span class="str">"true"</span><span class="pun">.</span><span class="pln">equals</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">getParameter</span><span class="pun">(</span><span class="str">"_ec_ismobile"</span><span class="pun">));</span><span class="pln"> </span><span class="com">//true表示是eMobile、微信、钉钉等移动终端，false代表PC端</span></code></li></ol></pre><h3 id="h3-1-3-"><a name="1.3 前端代码开发方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.3 前端代码开发方式</h3><blockquote>
+<p>方式1：模板上代码块，针对单个节点，在显示/打印/移动模板单独配置</p>
+<p>方式2：【路径管理】-打开具体路径-【基础设置】-【自定义页面】，针对此路径下所有节点所有模板生效</p>
+<p>方式3：【路径管理】-【应用设置】-【流程表单自定义页面设置】，针对系统所有非模板模式的场景(PC及移动)。注意此页面为全局custompage，应避免写ready、checkCustomize等全局函数，只定义些函数体</p>
+<p>特别注意：方式二、方式三禁止引入init_wev8.js。</p>
+<p>如遇配置不生效，请先将代码块/custompage仅写alert确认是否生效，再逐步排查错误原因。</p>
+</blockquote>
+<h3 id="h3-1-4-pc-"><a name="1.4 PC端打开表单的方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.4 PC端打开表单的方式</h3><blockquote>
+<p>新建请求：传参路径id，会自动计算活动版本的路径id</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">"/workflow/request/CreateRequestForward.jsp?workflowid=747"</span><span class="pun">);</span></code></li></ol></pre><blockquote>
+<p>查看请求：传参请求id，用户需本身具备此请求查看权限，主次账号需带入账号信息</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">"/workflow/request/ViewRequestForwardSPA.jsp?requestid=5963690"</span><span class="pun">);</span></code></li></ol></pre><h3 id="h3-1-5-"><a name="1.5 移动端打开表单的方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>1.5 移动端打开表单的方式</h3><blockquote>
+<p>移动端表单链接：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//新建链接，传参路径id</span></code></li><li class="L1"><code><span class="kwd">var</span><span class="pln"> createUrl </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/spa/workflow/static4mobileform/index.html#/req?iscreate=1&amp;workflowid=748"</span><span class="pun">;</span></code></li><li class="L2"><code><span class="com">//查看链接，传参请求id</span></code></li><li class="L3"><code><span class="kwd">var</span><span class="pln"> viewUrl </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/spa/workflow/static4mobileform/index.html#/req?requestid=4503066"</span><span class="pun">;</span></code></li></ol></pre><p>第一种方式(推荐)：调用封装好的方法<br>如果是通过移动端脚手架打包的模块，可以直接调用<br>如果是自行开发的界面，需要引入/spa/coms/openLink.js</p>
+<p>最低支持版本：KB900190601</p>
+<p>openLink.openWorkflow(url, callbackFun, returnUrl)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>打开表单的链接</td>
+</tr>
+<tr>
+<td>callbackFun</td>
+<td>Function</td>
+<td>仅限EM客户端，返回时的回调函数</td>
+</tr>
+<tr>
+<td>returnUrl</td>
+<td>String</td>
+<td>非EM客户端，返回/提交后到指定链接</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">openLink</span><span class="pun">.</span><span class="pln">openWorkflow</span><span class="pun">(</span><span class="pln">createUrl</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"E-mobile打开表单链接，返回或提交后触发此回调函数"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">});</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="com">//非EM终端打开，返回或提交后返回到流程中心界面</span></code></li><li class="L5"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">openLink</span><span class="pun">.</span><span class="pln">openWorkflow</span><span class="pun">(</span><span class="pln">createUrl</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/spa/workflow/static4mobile/index.html#/center/doing"</span><span class="pun">);</span></code></li></ol></pre><blockquote>
+<p>第二种方式：仅限于EM客户端，打开表单并可控制表单返回/提交后事件回调<br>使用EM-SDK，弹webview方式实现</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//分为两步，第一步调用SDK弹webview，第二步调用SDK控制回调刷新</span></code></li><li class="L1"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">em</span><span class="pun">.</span><span class="pln">openLink</span><span class="pun">({</span></code></li><li class="L2"><code><span class="pln">    url</span><span class="pun">:</span><span class="pln"> viewUrl</span><span class="pun">,</span></code></li><li class="L3"><code><span class="pln">    openType</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span></code></li><li class="L4"><code><span class="pun">});</span></code></li><li class="L5"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">em</span><span class="pun">.</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L6"><code><span class="pln">    window</span><span class="pun">.</span><span class="pln">em</span><span class="pun">.</span><span class="pln">registerBroadcast</span><span class="pun">({</span></code></li><li class="L7"><code><span class="pln">      name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"_closeWfFormCallBack"</span><span class="pun">,</span></code></li><li class="L8"><code><span class="pln">      action</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">argument</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code><span class="pln">        alert</span><span class="pun">(</span><span class="str">"E-mobile打开表单链接，返回或提交后触发此回调函数"</span><span class="pun">);</span></code></li><li class="L0"><code><span class="pln">      </span><span class="pun">}</span></code></li><li class="L1"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L2"><code><span class="pun">});</span></code></li></ol></pre><blockquote>
+<p>第三种方式(不推荐)： window.open或者window.location.href跳转。<br>此方式url需要传参returnUrl并转码，流程提交后需要关闭的情况会返回跳转到returnUrl地址上，无法监听打开-手动返回场景；<br>建议如果是EM客户端采用方式一或方式二！</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="pln">viewUrl</span><span class="pun">+</span><span class="str">"&amp;returnUrl="</span><span class="pun">+</span><span class="pln">window</span><span class="pun">.</span><span class="pln">encodeURIComponent</span><span class="pun">(</span><span class="str">"/test.jsp?param1=test11&amp;param2=test22"</span><span class="pun">));</span></code></li></ol></pre><h2 id="h2-2-"><a name="2.注册自定义事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2.注册自定义事件</h2><h3 id="h3-2-1-"><a name="2.1 注册拦截事件，指定动作执行前触发，并可阻断/放行后续操作" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2.1 注册拦截事件，指定动作执行前触发，并可阻断/放行后续操作</h3><blockquote>
+<p>支持多次注册，按注册顺序依次执行；支持异步ajax，避免请求卡住</p>
+<p>场景1：表单提交、保存、退回、转发、强制收回等操作执行前，执行自定义逻辑并阻断/放行后续操作</p>
+<p>场景2：明细添加行、删除行前，执行自定义逻辑并阻断/允许后续操作</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>动作类型</th>
+<th>说明</th>
+<th>最低版本要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WfForm.OPER_SAVE</td>
+<td>保存</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_SUBMIT</td>
+<td>提交/批准/提交需反馈/不需反馈等</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_SUBMITCONFIRM</td>
+<td>提交至确认页面，如果是确认界面，点确认触发的是SUBMIT</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_REJECT</td>
+<td>退回</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_REMARK</td>
+<td>批注提交</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_INTERVENE</td>
+<td>干预</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_FORWARD</td>
+<td>转发</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_TAKEBACK</td>
+<td>强制收回</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_DELETE</td>
+<td>删除</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_ADDROW</td>
+<td>添加明细行，需拼明细表序号</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_DELROW</td>
+<td>删除明细行，需拼明细表序号</td>
+<td></td>
+</tr>
+<tr>
+<td>WfForm.OPER_PRINTPREVIEW</td>
+<td>打印预览</td>
+<td>KB900190501</td>
+</tr>
+<tr>
+<td>WfForm.OPER_EDITDETAILROW</td>
+<td>移动端-编辑明细</td>
+<td>KB900191101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_BEFOREVERIFY</td>
+<td>校验必填前触发事件</td>
+<td>KB900191201</td>
+</tr>
+<tr>
+<td>WfForm.OPER_TURNHANDLE</td>
+<td>转办</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_ASKOPINION</td>
+<td>意见征询</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_TAKFROWARD</td>
+<td>征询转办</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_TURNREAD</td>
+<td>传阅</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_FORCEOVER</td>
+<td>强制归档</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_BEFORECLICKBTN</td>
+<td>点右键按钮前</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_SAVECOMPLETE</td>
+<td>保存后页面跳转前</td>
+<td>KB900210501</td>
+</tr>
+<tr>
+<td>WfForm.OPER_WITHDRAW</td>
+<td>撤回</td>
+<td>KB900201101</td>
+</tr>
+<tr>
+<td>WfForm.OPER_CLOSE</td>
+<td>页面关闭</td>
+<td>KB900201101</td>
+</tr>
+</tbody>
+</table>
+<p>接口名称及参数说明</p>
+<blockquote>
+<p>registerCheckEvent:function(type,fun)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>是</td>
+<td>动作类型(详见上表)，多个逗号分隔</td>
+</tr>
+<tr>
+<td>fun</td>
+<td>Function</td>
+<td>是</td>
+<td>自定义函数，此函数入参为callback，执行自定义逻辑完成或异步ajax的success函数体内，放行需调用callback，不调用代表阻断后续操作</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">jQuery</span><span class="pun">().</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_SAVE</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span></code></li><li class="L2"><code><span class="pln">        jQuery</span><span class="pun">(</span><span class="str">"#field27495"</span><span class="pun">).</span><span class="pln">val</span><span class="pun">(</span><span class="str">"保存自动赋值"</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pln">        callback</span><span class="pun">();</span><span class="pln">    </span><span class="com">//继续提交需调用callback，不调用代表阻断</span></code></li><li class="L4"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L5"><code></code></li><li class="L6"><code><span class="pln">  </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_SAVE</span><span class="pun">+</span><span class="str">","</span><span class="pun">+</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_SUBMIT</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span></code></li><li class="L7"><code><span class="pln">        </span><span class="com">//... 执行自定义逻辑</span></code></li><li class="L8"><code><span class="pln">        callback</span><span class="pun">();</span></code></li><li class="L9"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L0"><code></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_ADDROW</span><span class="pun">+</span><span class="str">"1"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span></code></li><li class="L2"><code><span class="pln">        alert</span><span class="pun">(</span><span class="str">"添加明细1前执行逻辑，明细1则是OPER_ADDROW+1，依次类推"</span><span class="pun">)</span></code></li><li class="L3"><code><span class="pln">        callback</span><span class="pun">();</span><span class="pln">    </span><span class="com">//允许继续添加行调用callback，不调用代表阻断添加</span></code></li><li class="L4"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L5"><code></code></li><li class="L6"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_DELROW</span><span class="pun">+</span><span class="str">"2"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span></code></li><li class="L7"><code><span class="pln">        alert</span><span class="pun">(</span><span class="str">"删除明细2前执行逻辑"</span><span class="pun">)</span></code></li><li class="L8"><code><span class="pln">        callback</span><span class="pun">();</span><span class="pln">    </span><span class="com">//允许继续删除行调用callback，不调用代表阻断删除</span></code></li><li class="L9"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L0"><code></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_PRINTPREVIEW</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span></code></li><li class="L2"><code><span class="pln">        alert</span><span class="pun">(</span><span class="str">"控制默认弹出的打印预览窗口"</span><span class="pun">)</span></code></li><li class="L3"><code><span class="pln">        alert</span><span class="pun">(</span><span class="str">"当打印含签字意见列表，此接口需要放到跳转路由前执行，组件库提供此机制"</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pln">        window</span><span class="pun">.</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">printTimeout </span><span class="pun">=</span><span class="pln"> </span><span class="lit">3000</span><span class="pun">;</span><span class="pln">  </span><span class="com">//产品是默认延时1s自动弹出，可通过此方式控制延时时间</span></code></li><li class="L5"><code><span class="pln">        callback</span><span class="pun">();</span><span class="pln">    </span><span class="com">//允许继续弹出调用callback，不调用代表不自动弹预览</span></code></li><li class="L6"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerCheckEvent</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">OPER_EDITDETAILROW</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">,</span><span class="kwd">params</span><span class="pun">){</span></code></li><li class="L9"><code><span class="pln">        alert</span><span class="pun">(</span><span class="pln">JSON</span><span class="pun">.</span><span class="pln">stringify</span><span class="pun">(</span><span class="kwd">params</span><span class="pun">));</span><span class="pln">    </span><span class="com">//参数含当前点击哪个明细表哪一行</span></code></li><li class="L0"><code><span class="pln">        callback</span><span class="pun">();</span><span class="pln">    </span><span class="com">//允许跳转明细编辑窗口，不调用阻断跳转</span></code></li><li class="L1"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L2"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-2-2-"><a name="2.2 注册钩子事件，指定动作完成后触发" class="reference-link"></a><span class="header-link octicon octicon-link"></span>2.2 注册钩子事件，指定动作完成后触发</h3><blockquote>
+<p>支持多次调用注册，按注册的先后顺序依次执行</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>最低版本要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WfForm.ACTION_ADDROW</td>
+<td>添加明细行，需拼明细表序号</td>
+<td>KB900190407</td>
+</tr>
+<tr>
+<td>WfForm.ACTION_DELROW</td>
+<td>删除明细行，需拼明细表序号</td>
+<td>KB900190407</td>
+</tr>
+<tr>
+<td>WfForm.ACTION_EDITDETAILROW</td>
+<td>移动端-编辑明细行，需拼明细表序号</td>
+<td>KB900190501</td>
+</tr>
+<tr>
+<td>WfForm.ACTION_SWITCHDETAILPAGING</td>
+<td>切换明细分页</td>
+<td>KB900191201</td>
+</tr>
+<tr>
+<td>WfForm.ACTION_SWITCHTABLAYOUT</td>
+<td>切换模板布局标签页</td>
+<td>KB900191201</td>
+</tr>
+</tbody>
+</table>
+<p>接口名称及参数说明</p>
+<blockquote>
+<p>registerAction: function(actionname, fn)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>actionname</td>
+<td>String</td>
+<td>是</td>
+<td>动作类型，详见上表</td>
+</tr>
+<tr>
+<td>fn</td>
+<td>Function</td>
+<td>是</td>
+<td>触发事件</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerAction</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">ACTION_ADDROW</span><span class="pun">+</span><span class="str">"1"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">index</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"添加行下标是"</span><span class="pun">+</span><span class="pln">index</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">});</span><span class="pln">     </span><span class="com">//下标从1开始，明细1添加行触发事件，注册函数入参为新添加行下标</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerAction</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">ACTION_DELROW</span><span class="pun">+</span><span class="str">"2"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">arg</span><span class="pun">){</span></code></li><li class="L5"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"删除行下标集合是"</span><span class="pun">+</span><span class="pln">arg</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="str">","</span><span class="pun">));</span></code></li><li class="L6"><code><span class="pun">});</span><span class="pln">     </span><span class="com">//下标从1开始，明细2删除行触发事件</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerAction</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">ACTION_SWITCHDETAILPAGING</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">groupid</span><span class="pun">){</span></code></li><li class="L9"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"切换明细表"</span><span class="pun">+(</span><span class="pln">groupid</span><span class="pun">+</span><span class="lit">1</span><span class="pun">)+</span><span class="str">"的页码触发事件"</span><span class="pun">);</span></code></li><li class="L0"><code><span class="pun">});</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">registerAction</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">ACTION_SWITCHTABLAYOUT</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">tabid</span><span class="pun">){</span></code></li><li class="L3"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"切换到标签项"</span><span class="pun">+</span><span class="pln">tabid</span><span class="pun">+</span><span class="str">"触发事件"</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pun">});</span></code></li></ol></pre><h2 id="h2-3-"><a name="3.字段基础操作接口(不适用附件、位置字段类型)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.字段基础操作接口(不适用附件、位置字段类型)</h2><h3 id="h3-3-1-id"><a name="3.1 将字段名称转换成字段id" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.1 将字段名称转换成字段id</h3><blockquote>
+<p>灵活运用此方法，可实现多表单、多环境，代码块通用；解耦代码块中指定fieldid</p>
+<p>convertFieldNameToId: function(fieldname,symbol,prefix)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldname</td>
+<td>String</td>
+<td>是</td>
+<td>字段名称</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>String</td>
+<td>否</td>
+<td>表单标示，主表(main)/具体明细表(detail_1),默认为main</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>Boolean</td>
+<td>否</td>
+<td>返回值是否需要<code>field</code>字符串前缀，默认为true</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">var</span><span class="pln"> fieldid </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">convertFieldNameToId</span><span class="pun">(</span><span class="str">"zs"</span><span class="pun">);</span></code></li><li class="L1"><code><span class="kwd">var</span><span class="pln"> fieldid </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">convertFieldNameToId</span><span class="pun">(</span><span class="str">"zs_mx"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"detail_1"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="kwd">var</span><span class="pln"> fieldid </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">convertFieldNameToId</span><span class="pun">(</span><span class="str">"zs_mx"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></code></li></ol></pre><h3 id="h3-3-2-"><a name="3.2 获取单个字段值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.2 获取单个字段值</h3><blockquote>
+<p>getFieldValue: function(fieldMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//获取文本字段或浏览按钮主键值</span></code></li><li class="L1"><code><span class="kwd">var</span><span class="pln"> fieldvalue1 </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getFieldValue</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="com">//获取浏览按钮specialobj</span></code></li><li class="L3"><code><span class="kwd">var</span><span class="pln"> fieldvalue2  </span><span class="pun">=</span><span class="pln"> mobx</span><span class="pun">.</span><span class="pln">toJS</span><span class="pun">(</span><span class="pln">wfform</span><span class="pun">.</span><span class="pln">getFieldValueObj</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">).</span><span class="pln">specialobj</span><span class="pun">);</span></code></li><li class="L4"><code><span class="com">//获取到的内容可直接作为其他浏览按钮赋值使用的specialobj，如：</span></code></li><li class="L5"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field11_2"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code><span class="pln">    value</span><span class="pun">:</span><span class="pln"> fieldvalue1</span><span class="pun">,</span></code></li><li class="L7"><code><span class="pln">    specialobj</span><span class="pun">:</span><span class="pln">fieldvalue2</span></code></li><li class="L8"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-3-3-"><a name="3.3 修改单个字段值（不支持附件类型）" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.3 修改单个字段值（不支持附件类型）</h3><blockquote>
+<p>此方法修改的字段如果涉及到触发联动、单元格格式化等，修改完值会自动触发联动/格式化</p>
+<p>改值的格式在添加明细行初始化、批量修改字段等场景类同</p>
+<p>changeFieldValue: function(fieldMark, valueInfo)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>valueInfo</td>
+<td>JSON</td>
+<td>是</td>
+<td>字段值信息，非浏览按钮字段格式为{value:”修改的值”};specialobj为浏览按钮信息，数组格式;showhtml属性只在单行文本类型且只读情况下生效；</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//修改文本框、多行文本、选择框等字段类型</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field123"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"1.234"</span><span class="pun">});</span></code></li><li class="L2"><code></code></li><li class="L3"><code><span class="com">//修改浏览框字段的值，必须有specialobj数组结构对象</span></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field11_2"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L5"><code><span class="pln">    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"2,3"</span><span class="pun">,</span></code></li><li class="L6"><code><span class="pln">    specialobj</span><span class="pun">:[</span></code></li><li class="L7"><code><span class="pln">        </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"2"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"张三"</span><span class="pun">},</span></code></li><li class="L8"><code><span class="pln">        </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"3"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"李四"</span><span class="pun">}</span></code></li><li class="L9"><code><span class="pln">    </span><span class="pun">]</span></code></li><li class="L0"><code><span class="pun">});</span><span class="pln">     </span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="com">//修改check框字段(0不勾选、1勾选)</span></code></li><li class="L3"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field123"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"1"</span><span class="pun">});</span><span class="pln">  </span></code></li><li class="L4"><code></code></li><li class="L5"><code><span class="com">//针对单行文本框字段类型，只读情况，支持显示值跟入库值不一致</span></code></li><li class="L6"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field123"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code><span class="pln">    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"入库真实值"</span><span class="pun">,</span></code></li><li class="L8"><code><span class="pln">    specialobj</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code><span class="pln">        showhtml</span><span class="pun">:</span><span class="pln"> </span><span class="str">"界面显示值"</span></code></li><li class="L0"><code><span class="pln">    </span><span class="pun">}</span></code></li><li class="L1"><code><span class="pun">});</span></code></li></ol></pre><p><strong>特别注意</strong>：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">后台字段如果设置的是只读属性，</span><span class="pln">changeFieldValue</span><span class="pun">修改的字段值在非创建时刻是禁止入库的，属于篡改数据。</span></code></li><li class="L1"><code><span class="pun">此情况需要设置为可编辑属性，如果前台界面又想显示成只读效果，同时设置禁止手工编辑即可。</span></code></li><li class="L2"><code><span class="pun">不适用于附件字段类型。</span></code></li></ol></pre><h3 id="h3-3-4-"><a name="3.4 改变单个字段显示属性(只读/必填等)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.4 改变单个字段显示属性(只读/必填等)</h3><blockquote>
+<p>changeFieldAttr: function(fieldMark, viewAttr)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>viewAttr</td>
+<td>int</td>
+<td>是</td>
+<td>改变字段的状态，1：只读，2：可编辑，3：必填，4：隐藏字段标签及内容，5:隐藏字段所在行(行内单元格不要存在行合并)</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldAttr</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">);</span><span class="pln">  </span><span class="com">//字段修改为只读</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldAttr</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">);</span><span class="pln">  </span><span class="com">//字段标签以及内容都隐藏，效果与显示属性联动隐藏一致，只支持主表字段</span></code></li></ol></pre><h3 id="h3-3-5-"><a name="3.5 同时修改字段的值及显示属性" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.5 同时修改字段的值及显示属性</h3><blockquote>
+<p>changeSingleField: function(fieldMark, valueInfo, variableInfo)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>valueInfo</td>
+<td>JSON</td>
+<td>否</td>
+<td>字段值信息，与接口2格式一致，例：{value:”修改的值”}</td>
+</tr>
+<tr>
+<td>variableInfo</td>
+<td>JSON</td>
+<td>否</td>
+<td>变更属性，例：{viewAttr:3}</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeSingleField</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"修改的值"</span><span class="pun">},</span><span class="pln"> </span><span class="pun">{</span><span class="pln">viewAttr</span><span class="pun">:</span><span class="str">"1"</span><span class="pun">});</span><span class="pln">   </span><span class="com">//修改值同时置为只读</span></code></li></ol></pre><h3 id="h3-3-6-"><a name="3.6 批量修改字段值或显示属性" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.6 批量修改字段值或显示属性</h3><blockquote>
+<p>changeMoreField: function(changeDatas, changeVariable)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>changeMoreField</td>
+<td>JSON</td>
+<td>是</td>
+<td>修改的字段值信息集合</td>
+</tr>
+<tr>
+<td>changeVariable</td>
+<td>JSON</td>
+<td>否</td>
+<td>修改的字段显示属性集合</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeMoreField</span><span class="pun">({</span></code></li><li class="L1"><code><span class="pln">    field110</span><span class="pun">:{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"修改后的值"</span><span class="pun">},</span></code></li><li class="L2"><code><span class="pln">    field111</span><span class="pun">:{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"2,3"</span><span class="pun">,</span><span class="pln">specialobj</span><span class="pun">:[</span></code></li><li class="L3"><code><span class="pln">        </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"2"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"张三"</span><span class="pun">},{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"3"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"李四"</span><span class="pun">}</span></code></li><li class="L4"><code><span class="pln">    </span><span class="pun">]},</span></code></li><li class="L5"><code><span class="pln">    </span><span class="pun">...</span></code></li><li class="L6"><code><span class="pun">},{</span></code></li><li class="L7"><code><span class="pln">    field110</span><span class="pun">:{</span><span class="pln">viewAttr</span><span class="pun">:</span><span class="lit">2</span><span class="pun">},</span></code></li><li class="L8"><code><span class="pln">    field111</span><span class="pun">:{</span><span class="pln">viewAttr</span><span class="pun">:</span><span class="lit">3</span><span class="pun">},</span></code></li><li class="L9"><code><span class="pln">    </span><span class="pun">...</span></code></li><li class="L0"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-3-7-"><a name="3.7 触发指定字段涉及的所有联动（归档调用无效）" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.7 触发指定字段涉及的所有联动（归档调用无效）</h3><blockquote>
+<p>说明：手动触发一次字段涉及的所有联动，包括字段联动、SQL联动、日期时间计算、字段赋值、公式、行列规则、显示属性联动、选择框联动、bindPropertyChange事件绑定等</p>
+<p>场景：触发子流程默认不执行字段联动，可在创建节点代码块触发，实现打开时刻执行字段联动</p>
+<p>triggerFieldAllLinkage:function(fieldMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//表单打开强制执行某字段的联动</span></code></li><li class="L1"><code><span class="pln">jQuery</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L2"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">triggerFieldAllLinkage</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">);</span><span class="pln">  </span><span class="com">//执行字段涉及的所有联动</span></code></li><li class="L3"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-3-8-id-"><a name="3.8 根据字段ID获取字段信息" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.8 根据字段ID获取字段信息</h3><blockquote>
+<p>说明：根据字段ID获取字段信息，JSON格式，包括名称、类型、只读必填属性等</p>
+<p>getFieldInfo:function(fieldid)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldid</td>
+<td>String</td>
+<td>是</td>
+<td>字段ID，不带任何标示</td>
+</tr>
+</tbody>
+</table>
+<p>返回值字段信息JSON重要属性说明<br>参数|说明<br>—-|—-<br>htmltype|字段大类型(文本/多行文本…)<br>detailtype|字段小类型(整数/浮点数…)<br>fieldname|字段数据库名称<br>fieldlabel|字段显示名<br>viewattr|字段属性(1:只读；2：可编辑；3：必填)</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getFieldInfo</span><span class="pun">(</span><span class="str">"111"</span><span class="pun">);</span></code></li></ol></pre><h3 id="h3-3-9-"><a name="3.9 获取字段当前的只读/必填属性" class="reference-link"></a><span class="header-link octicon octicon-link"></span>3.9 获取字段当前的只读/必填属性</h3><blockquote>
+<p>此方法为实时获取字段显示属性，包含显示属性联动、代码接口变更、已办、明细已有字段不可修改等可能的变更情况，不是仅仅获取后台配置的字段属性；</p>
+<p>如只想获取后台配置的字段属性，调用接口3.8取返回值viewattr属性</p>
+<p>getFieldCurViewAttr:function(fieldMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getFieldCurViewAttr</span><span class="pun">(</span><span class="str">"field110_2"</span><span class="pun">);</span><span class="pln">   </span><span class="com">//获取明细字段属性，1：只读、2：可编辑、3：必填；已办全部为只读；</span></code></li></ol></pre><h2 id="h2-4-"><a name="4.表单字段事件绑定、自定义渲染" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.表单字段事件绑定、自定义渲染</h2><h3 id="h3-4-1-"><a name="4.1  表单字段值变化触发事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.1  表单字段值变化触发事件</h3><blockquote>
+<p>字段值变化即会触发所绑定的函数，可多次绑定</p>
+<p>bindFieldChangeEvent: function(fieldMarkStr,funobj)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMarkStr</td>
+<td>String</td>
+<td>是</td>
+<td>绑定字段标示，可多个拼接逗号隔开，例如：field110(主字段),field111_2(明细字段)……</td>
+</tr>
+<tr>
+<td>funobj</td>
+<td>Function</td>
+<td>是</td>
+<td>字段值变化触发的自定义函数，函数默认传递以下三个参数，参数1：触发字段的DOM对象，参数2：触发字段的标示(field27555等)，参数3：修改后的值</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">bindFieldChangeEvent</span><span class="pun">(</span><span class="str">"field27555,field27556"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">value</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"WfForm.bindFieldChangeEvent--"</span><span class="pun">,</span><span class="pln">obj</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">value</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">});</span></code></li></ol></pre><p><strong>特别注意</strong></p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">如果字段绑定事件，事件内改变本字段的值，需要</span><span class="pln">setTimeout</span><span class="pun">延时下</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">bindFieldChangeEvent</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">value</span><span class="pun">){</span></code></li><li class="L3"><code><span class="pln">    window</span><span class="pun">.</span><span class="pln">setTimeout</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L4"><code><span class="pln">        </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"修改本字段值需要延时"</span><span class="pun">});</span></code></li><li class="L5"><code><span class="pln">    </span><span class="pun">},</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span></code></li><li class="L6"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">changeFieldValue</span><span class="pun">(</span><span class="str">"field222"</span><span class="pun">,{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"修改非本字段不需要延时"</span><span class="pun">});</span></code></li><li class="L7"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-4-2-"><a name="4.2  明细字段值变化触发事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.2  明细字段值变化触发事件</h3><blockquote>
+<p>绑定后对新添加的明细行字段以及加载的已有行明细字段，值变更触发所绑定的事件</p>
+<p>bindDetailFieldChangeEvent: function(fieldMarkStr,funobj)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMarkStr</td>
+<td>String</td>
+<td>是</td>
+<td>绑定的明细字段标示，不能有下划线标示，可多个拼接逗号隔开，例如：field110,field111</td>
+</tr>
+<tr>
+<td>funobj</td>
+<td>Function</td>
+<td>是</td>
+<td>字段值变更触发自定义函数，函数默认传递以下三个参数，参数1：字段标示(field27583)，参数2：行标示，参数3：修改后的值</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">jQuery</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">bindDetailFieldChangeEvent</span><span class="pun">(</span><span class="str">"field27583,field27584"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">id</span><span class="pun">,</span><span class="pln">rowIndex</span><span class="pun">,</span><span class="pln">value</span><span class="pun">){</span></code></li><li class="L2"><code><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"WfForm.bindDetailFieldChangeEvent--"</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">rowIndex</span><span class="pun">,</span><span class="pln">value</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L4"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-4-3-"><a name="4.3 字段区域绑定动作事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.3 字段区域绑定动作事件</h3><blockquote>
+<p>推荐使用值变化事件实现开发,因为此接口点击、双击等动作不是绑定到字段元素，是字段所在单元格区域即会触发</p>
+<p>此接口所有功能都通可以新版公式实现</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onblur</td>
+<td>失去焦点事件，仅支持单行文本类型</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>获取焦点事件，仅支持单行文本字段类型</td>
+</tr>
+<tr>
+<td>onclick</td>
+<td>单击事件，字段所在单元格区域单击触发</td>
+</tr>
+<tr>
+<td>ondbclick</td>
+<td>双击事件，字段所在单元格区域双击触发</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标移入事件，鼠标移入字段所在单元格区域触发</td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标移出事件，鼠标移出字段所在单元格区域触发</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>bindFieldAction: function(type, fieldids, fn)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>是</td>
+<td>动作类型，见上表</td>
+</tr>
+<tr>
+<td>fieldids</td>
+<td>String</td>
+<td>是</td>
+<td>字段id集合，多个逗号分隔，明细字段不加下划线对所有行生效</td>
+</tr>
+<tr>
+<td>fn</td>
+<td>Function</td>
+<td>是</td>
+<td>触发函数，此函数入参接收两个参数，fieldid以及rowIndex行号</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">bindFieldAction</span><span class="pun">(</span><span class="str">"onfocus"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"field111,field222"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">fieldid</span><span class="pun">,</span><span class="pln">rowIndex</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"单行文本字段111获取焦点触发事件"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"明细第"</span><span class="pun">+</span><span class="pln">rowIndex</span><span class="pun">+</span><span class="str">"行字段222获取焦点触发事件"</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pun">});</span></code></li><li class="L4"><code></code></li><li class="L5"><code></code></li><li class="L6"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">bindFieldAction</span><span class="pun">(</span><span class="str">"onclick"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"field333"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L7"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"浏览按钮字段单击触发事件，不是指点放大镜选择，是整个字段所在单元格区域单击都会触发"</span><span class="pun">);</span></code></li><li class="L8"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-4-4-"><a name="4.4 自定义代理渲染单行文本框字段" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.4 自定义代理渲染单行文本框字段</h3><blockquote>
+<p>最低版本要求：KB900190407</p>
+<p>此接口仅对单行文本框字段类型生效，即数据库字段类型为varchar</p>
+<p>显示效果、事件、字段值交互都可自行控制，通过接口3.3修改的可编辑字段值也会正常入库</p>
+<p>此接口传入的组件，产品会传入此字段依赖的相关props，具体可通过React Developer Tools自行抓取，按需调用</p>
+<p>proxyFieldComp: function(fieldMark, el, range)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>el</td>
+<td>React Comp</td>
+<td>是</td>
+<td>渲染的组件</td>
+</tr>
+<tr>
+<td>range</td>
+<td>String</td>
+<td>否</td>
+<td>作用范围，默认全部，(1:只读、2:可编辑、3:必填),组合后逗号分隔</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">proxyFieldComp</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">,{</span></code></li><li class="L1"><code><span class="pln">    style</span><span class="pun">:{</span><span class="pln">background</span><span class="pun">:</span><span class="str">"red"</span><span class="pun">},</span><span class="pln"> </span></code></li><li class="L2"><code><span class="pln">    children</span><span class="pun">:</span><span class="str">"子内容"</span></code></li><li class="L3"><code><span class="pun">}));</span></code></li><li class="L4"><code><span class="com">//字段111在只读、可编辑、必填情况下自定义渲染</span></code></li><li class="L5"><code></code></li><li class="L6"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">proxyFieldComp</span><span class="pun">(</span><span class="str">"field222_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&lt;div&gt;自定义渲染字段&lt;/div&gt;"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"2,3"</span><span class="pun">);</span></code></li><li class="L7"><code><span class="com">//明细某行字段222再可编辑、必填情况下自定义渲染</span></code></li></ol></pre><h3 id="h3-4-5-"><a name="4.5 自定义追加渲染表单字段" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.5 自定义追加渲染表单字段</h3><blockquote>
+<p>最低版本要求：KB900190407</p>
+<p>在标准字段展现内容的基础上，after方式追加渲染自定义组件</p>
+<p>此接口参数说明与用法，与接口4.4类同</p>
+<p>afterFieldComp: function(fieldMark, el, range)</p>
+</blockquote>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">afterFieldComp</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,</span></code></li><li class="L1"><code><span class="typ">React</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"a"</span><span class="pun">,{</span></code></li><li class="L2"><code><span class="pln">    href</span><span class="pun">:</span><span class="str">"/test.jsp?userid="</span><span class="pun">+</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getFieldValue</span><span class="pun">(</span><span class="str">"field222"</span><span class="pun">),</span></code></li><li class="L3"><code><span class="pln">    children</span><span class="pun">:</span><span class="str">"自定义链接"</span></code></li><li class="L4"><code><span class="pun">}));</span></code></li><li class="L5"><code><span class="com">//字段111在只读、可编辑、必填情况下,追加渲染个自定义链接，链接参数依赖表单其它字段值</span></code></li></ol></pre><h3 id="h3-4-6-"><a name="4.6 函数式自定义渲染表单字段" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.6 函数式自定义渲染表单字段</h3><blockquote>
+<p>最低版本要求：KB900190701</p>
+<p>以函数返回值方式自定义渲染表单字段，支持全部的字段类型，可实现基于原组件追加/复写/重新布局等等</p>
+<p>建议结合ecode工具，放到模块加载前调用，使用JSX，可实现与表单字段渲染有关的二次开发</p>
+<p>此接口的优先级高于4.4、4.5，即使用此接口代理的字段，如再使用4.4、4.5会直接无效</p>
+<p>proxyFieldContentComp: function(fieldid,fn)</p>
+</blockquote>
+<p>接口参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>field</td>
+<td>String</td>
+<td>是</td>
+<td>主表/明细表字段ID,格式<code>$fieldid$</code></td>
+</tr>
+<tr>
+<td>fn</td>
+<td>Function</td>
+<td>是</td>
+<td>代理的函数，此函数必须有返回值，返回自定义渲染的组件</td>
+</tr>
+</tbody>
+</table>
+<p>代理的函数参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info</td>
+<td>JSON</td>
+<td>是</td>
+<td>字段基础信息，包括字段值、字段属性等等</td>
+</tr>
+<tr>
+<td>compFn</td>
+<td>Function</td>
+<td>是</td>
+<td>代理前原字段组件函数，可通过此函数获取原组件</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">proxyFieldContentComp</span><span class="pun">(</span><span class="str">"111"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">info</span><span class="pun">,</span><span class="pln">compFn</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"字段id："</span><span class="pun">,</span><span class="pln">info</span><span class="pun">.</span><span class="pln">fieldid</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"明细行号："</span><span class="pun">,</span><span class="pln">info</span><span class="pun">.</span><span class="pln">rowIndex</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"字段只读必填属性："</span><span class="pun">,</span><span class="pln">info</span><span class="pun">.</span><span class="pln">viewAttr</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"字段值："</span><span class="pun">,</span><span class="pln">info</span><span class="pun">.</span><span class="pln">fieldValue</span><span class="pun">);</span></code></li><li class="L5"><code><span class="pln">    </span><span class="com">//返回自定义渲染的组件</span></code></li><li class="L6"><code><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{},</span><span class="pln"> </span><span class="pun">[</span><span class="str">"想怎么玩就怎么玩"</span><span class="pun">]);</span></code></li><li class="L7"><code><span class="pln">    </span><span class="com">//返回原组件</span></code></li><li class="L8"><code><span class="pln">    </span><span class="kwd">return</span><span class="pln"> compFn</span><span class="pun">();</span></code></li><li class="L9"><code><span class="pln">    </span><span class="com">//返回基于原组件的复写组件</span></code></li><li class="L0"><code><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{},</span><span class="pln"> </span><span class="pun">[</span><span class="str">"前置组件"</span><span class="pun">,</span><span class="pln">compFn</span><span class="pun">(),</span><span class="str">"后置组件"</span><span class="pun">]);</span></code></li><li class="L1"><code><span class="pun">});</span></code></li><li class="L2"><code><span class="com">//如果此接口调用在代码块、custompage等(非模块加载前调用)，需强制渲染字段一次</span></code></li><li class="L3"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">forceRenderField</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">);</span></code></li></ol></pre><h3 id="h3-4-7-"><a name="4.7 根据字段标识获取字段组件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>4.7 根据字段标识获取字段组件</h3><blockquote>
+<p>最低版本要求：KB900190701</p>
+<p>根据字段标识，获取字段组件，即字段组件可单独提取出来放在任意地方渲染。注意字段的只读可编辑属性仍需后台事先设置好</p>
+<p>需要结合ecode工具，使用JSX，同时Provider 注入Store，再结合设计器自定义属性或接口4.6，可实现某一区域自定义排版布局渲染多个表单字段</p>
+<p>generateFieldContentComp:function(fieldMark)</p>
+</blockquote>
+<p>接口参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//以明细多字段、子明细的需求为例子</span></code></li><li class="L1"><code><span class="pun">步骤</span><span class="lit">1</span><span class="pun">：模板单元格给自定义</span><span class="kwd">class</span><span class="pun">：</span><span class="pln">area_1</span></code></li><li class="L2"><code><span class="pun">步骤</span><span class="lit">2</span><span class="pun">：自定义排版渲染</span><span class="pln">area_1</span><span class="pun">区域</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="pun">{</span><span class="typ">Provider</span><span class="pun">}=</span><span class="pln">mobxReact</span><span class="pun">;</span></code></li><li class="L5"><code><span class="pln"> </span><span class="kwd">const</span><span class="pln"> globalStore </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getGlobalStore</span><span class="pun">();</span></code></li><li class="L6"><code><span class="pln"> </span><span class="kwd">const</span><span class="pln"> layoutStore </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getLayoutStore</span><span class="pun">();</span></code></li><li class="L7"><code><span class="typ">ReactDOM</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(&lt;</span><span class="pln">div</span><span class="pun">&gt;</span></code></li><li class="L8"><code><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">Provider</span><span class="pln"> globalStore</span><span class="pun">={</span><span class="pln">globalStore</span><span class="pun">}</span><span class="pln"> layoutStore</span><span class="pun">={</span><span class="pln">layoutStore</span><span class="pun">}&gt;</span></code></li><li class="L9"><code><span class="pln">    </span><span class="str">&lt;table&gt;</span></code></li><li class="L0"><code><span class="pln">        </span><span class="str">&lt;tr&gt;</span></code></li><li class="L1"><code><span class="pln">            </span><span class="str">&lt;td&gt;</span><span class="pun">{</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">generateFieldContentComp</span><span class="pun">(</span><span class="str">"field111_1"</span><span class="pun">)}&lt;/</span><span class="pln">td</span><span class="pun">&gt;</span></code></li><li class="L2"><code><span class="pln">            </span><span class="str">&lt;td&gt;</span><span class="pun">{</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">generateFieldContentComp</span><span class="pun">(</span><span class="str">"field112_1"</span><span class="pun">)}&lt;/</span><span class="pln">td</span><span class="pun">&gt;</span></code></li><li class="L3"><code><span class="pln">        </span><span class="pun">&lt;/</span><span class="pln">tr</span><span class="pun">&gt;</span></code></li><li class="L4"><code><span class="pln">        </span><span class="str">&lt;tr&gt;</span></code></li><li class="L5"><code><span class="pln">            </span><span class="str">&lt;td&gt;</span><span class="pun">{</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">generateFieldContentComp</span><span class="pun">(</span><span class="str">"field113_1"</span><span class="pun">)}&lt;/</span><span class="pln">td</span><span class="pun">&gt;</span></code></li><li class="L6"><code><span class="pln">            </span><span class="str">&lt;td&gt;</span><span class="pun">{</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">generateFieldContentComp</span><span class="pun">(</span><span class="str">"field114_1"</span><span class="pun">)}&lt;/</span><span class="pln">td</span><span class="pun">&gt;</span></code></li><li class="L7"><code><span class="pln">        </span><span class="pun">&lt;/</span><span class="pln">tr</span><span class="pun">&gt;</span></code></li><li class="L8"><code><span class="pln">    </span><span class="pun">&lt;/</span><span class="pln">table</span><span class="pun">&gt;</span></code></li><li class="L9"><code><span class="pln">     </span><span class="pun">&lt;/</span><span class="typ">Provider</span><span class="pun">&gt;</span></code></li><li class="L0"><code><span class="pun">&lt;</span><span class="str">/div&gt;, document.getElementByclassName("area_1")[0]);   /</span><span class="pun">/仅供参考，参数二要区分行号定位到具体单元格</span></code></li></ol></pre><h2 id="h2-5-"><a name="5.明细表操作相关接口" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.明细表操作相关接口</h2><h3 id="h3-5-1-"><a name="5.1 添加明细行并设置初始值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.1 添加明细行并设置初始值</h3><blockquote>
+<p>addDetailRow: function(detailMark, initAddRowData={})</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>initAddRowData</td>
+<td>JSON</td>
+<td>否</td>
+<td>给新增后设置初始值，格式为{field110:{value:”11”},field112:{value:”22”},…},注意key不带下划线标示</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//明细2添加一行并给新添加的行字段field111赋值</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">addDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,{</span><span class="pln">field111</span><span class="pun">:{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"初始值"</span><span class="pun">}});</span></code></li><li class="L2"><code></code></li><li class="L3"><code><span class="com">//添加一行并给浏览按钮字段赋值</span></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">addDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,{</span><span class="pln">field222</span><span class="pun">:{</span></code></li><li class="L5"><code><span class="pln">    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"2,3"</span><span class="pun">,</span></code></li><li class="L6"><code><span class="pln">    specialobj</span><span class="pun">:[</span></code></li><li class="L7"><code><span class="pln">        </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"2"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"张三"</span><span class="pun">},</span></code></li><li class="L8"><code><span class="pln">        </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"3"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"李四"</span><span class="pun">}</span></code></li><li class="L9"><code><span class="pln">    </span><span class="pun">]</span></code></li><li class="L0"><code><span class="pun">}});</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="com">//动态字段赋值，明细1添加一行并给字段名称为begindate的字段赋值</span></code></li><li class="L3"><code><span class="kwd">var</span><span class="pln"> begindatefield </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">convertFieldNameToId</span><span class="pun">(</span><span class="str">"begindate"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"detail_1"</span><span class="pun">);</span></code></li><li class="L4"><code><span class="kwd">var</span><span class="pln"> addObj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span></code></li><li class="L5"><code><span class="pln">addObj</span><span class="pun">[</span><span class="pln">begindatefield</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"2019-03-01"</span><span class="pun">};</span></code></li><li class="L6"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">addDetailRow</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> addObj</span><span class="pun">);</span></code></li><li class="L7"><code></code></li><li class="L8"><code><span class="com">//不推荐这种动态键值写法，IE不支持，避免掉</span></code></li><li class="L9"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">addDetailRow</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,{[</span><span class="pln">begindatefield</span><span class="pun">]:{</span><span class="pln">value</span><span class="pun">:</span><span class="str">"2019-03-01"</span><span class="pun">}})</span></code></li></ol></pre><h3 id="h3-5-2-"><a name="5.2 删除明细表指定行/全部行" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.2 删除明细表指定行/全部行</h3><blockquote>
+<p>delDetailRow: function(detailMark, rowIndexMark)</p>
+<p>说明：此方法会清空明细已选情况，删除时没有提示”是否删除”的确认框</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>rowIndexMark</td>
+<td>String</td>
+<td>是</td>
+<td>需要删除的行标示，删除全部行:all,删除部分行：”1，2，3”</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">delDetailRow</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"all"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//删除明细1所有行</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">delDetailRow</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"3,6"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//删除明细1行标为3,6的行</span></code></li></ol></pre><h3 id="h3-5-3-"><a name="5.3 选中明细指定行/全部行" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.3 选中明细指定行/全部行</h3><blockquote>
+<p>checkDetailRow: function(detailMark, rowIndexMark,needClearBeforeChecked)</p>
+<p>说明：此方法可灵活使用，依靠参数needClearBeforeChecked可实现清除选中的逻辑</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>rowIndexMark</td>
+<td>String</td>
+<td>否</td>
+<td>需要选中的行标示，选中全部行:all,选中部分行：”1，2，3”</td>
+</tr>
+<tr>
+<td>needClearBeforeChecked</td>
+<td>Boolean</td>
+<td>否</td>
+<td>是否需要清除已选</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">checkDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"all"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//勾选明细2所有行</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">checkDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">  </span><span class="com">//清除明细2所有已选</span></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">checkDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"3,6"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">     </span><span class="com">//清除明细2全部已选，再勾选行标为3,6的行</span></code></li><li class="L3"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">checkDetailRow</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"7"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span><span class="pln"> </span></code></li><li class="L4"><code><span class="com">//保持已选记录，追加选中行标为7的行</span></code></li></ol></pre><h3 id="h3-5-4-"><a name="5.4 获取明细行所有行标示" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.4 获取明细行所有行标示</h3><blockquote>
+<p>getDetailAllRowIndexStr： function(detailMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailAllRowIndexStr</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">));</span><span class="pln">    </span><span class="com">//输出1，3...等等</span></code></li></ol></pre><p>特别注意</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">遍历明细行的写法</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="kwd">var</span><span class="pln"> rowArr </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailAllRowIndexStr</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">).</span><span class="pln">split</span><span class="pun">(</span><span class="str">","</span><span class="pun">);</span></code></li><li class="L3"><code><span class="kwd">for</span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&lt;</span><span class="pln">rowArr</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++){</span></code></li><li class="L4"><code><span class="pln">    </span><span class="kwd">var</span><span class="pln"> rowIndex </span><span class="pun">=</span><span class="pln"> rowArr</span><span class="pun">[</span><span class="pln">i</span><span class="pun">];</span></code></li><li class="L5"><code><span class="pln">    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">rowIndex </span><span class="pun">!==</span><span class="pln"> </span><span class="str">""</span><span class="pun">){</span></code></li><li class="L6"><code><span class="pln">        </span><span class="kwd">var</span><span class="pln"> fieldMark </span><span class="pun">=</span><span class="pln"> </span><span class="str">"field111_"</span><span class="pun">+</span><span class="pln">rowIndex</span><span class="pun">;</span><span class="pln">    </span><span class="com">//遍历明细行字段</span></code></li><li class="L7"><code><span class="pln">    </span><span class="pun">}</span></code></li><li class="L8"><code><span class="pun">}</span></code></li></ol></pre><h3 id="h3-5-5-"><a name="5.5 获取明细选中行下标" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.5 获取明细选中行下标</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>getDetailCheckedRowIndexStr： function(detailMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailCheckedRowIndexStr</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">));</span><span class="pln">    </span><span class="com">//输出选中行1，3...等等</span></code></li></ol></pre><h3 id="h3-5-6-check-"><a name="5.6 控制明细行check框是否禁用勾选" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.6 控制明细行check框是否禁用勾选</h3><blockquote>
+<p>注：后台配置的置灰行(不允许删除情况)，不支持通过此API控制</p>
+<p>controlDetailRowDisableCheck: function(detailMark, rowIndexMark, disableCheck)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>true</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>rowIndexMark</td>
+<td>String</td>
+<td>是</td>
+<td>需要选中的行标示，选中全部行:all,选中部分行：”1，2，3”</td>
+</tr>
+<tr>
+<td>disableCheck</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否禁用勾选，true:置灰禁止勾选，false:允许勾选</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDetailRowDisableCheck</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"all"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">   </span><span class="com">//明细1所有行check框置灰禁止选中</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDetailRowDisableCheck</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"1,2"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></code></li><li class="L3"><code><span class="com">//明细1行标为1,2的行释放置灰，允许勾选</span></code></li></ol></pre><h3 id="h3-5-7-"><a name="5.7 控制明细数据行的显示及隐藏" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.7 控制明细数据行的显示及隐藏</h3><blockquote>
+<p>注：只是界面效果隐藏，序号不会变化，即被隐藏行的前后行序号会断层不连续</p>
+<p>controlDetailRowDisplay: function(detailMark, rowIndexMark, needHide)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>true</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>rowIndexMark</td>
+<td>String</td>
+<td>是</td>
+<td>需要选中的行标示，选中全部行:all,选中部分行：”1，2，3”</td>
+</tr>
+<tr>
+<td>needHide</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否隐藏行，true:隐藏，false:显示</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDetailRowDisplay</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"3,5"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">   </span><span class="com">//明细1行标为3,5的隐藏不显示</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDetailRowDisplay</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"all"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></code></li><li class="L3"><code><span class="com">//明细1所有行不隐藏都显示</span></code></li></ol></pre><h3 id="h3-5-8-"><a name="5.8 获取明细已有行的数据库主键" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.8 获取明细已有行的数据库主键</h3><blockquote>
+<p>getDetailRowKey: function(fieldMark)</p>
+<p>此方法只对明细已有行生效，新增加的行/不存在的行返回-1</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code>，用于定位属于哪个明细表</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailRowKey</span><span class="pun">(</span><span class="str">"field112_3"</span><span class="pun">);</span><span class="pln">   </span><span class="com">//获取明细第四行主键</span></code></li></ol></pre><h3 id="h3-5-9-"><a name="5.9 获取明细总行数" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.9 获取明细总行数</h3><blockquote>
+<p>getDetailRowCount： function(detailMark)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailRowCount</span><span class="pun">(</span><span class="str">"detail_2"</span><span class="pun">));</span><span class="pln"> </span><span class="com">//输出明细总行数，注意此结果只代表明细总行数，不能用作循环行</span></code></li></ol></pre><h3 id="h3-5-10-"><a name="5.10 添加行、删除行前执行逻辑或阻断事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.10 添加行、删除行前执行逻辑或阻断事件</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>场景：可实现添加行前执行自定义逻辑、限制超过多少行添加无效、不允许删除等</p>
+<p>采用注册函数机制，详见接口2.1</p>
+</blockquote>
+<h3 id="h3-5-11-"><a name="5.11 添加行、删除行后触发事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.11 添加行、删除行后触发事件</h3><blockquote>
+<p>采用钩子机制，详见接口2.2</p>
+</blockquote>
+<h3 id="h3-5-12-"><a name="5.12 移动端跳转至明细编辑行页面执行事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.12 移动端跳转至明细编辑行页面执行事件</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>仅应用于移动端编辑明细行，采用钩子机制，详见接口2.2</p>
+</blockquote>
+<h3 id="h3-5-13-"><a name="5.13  添加明细时默认复制最后一行记录" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.13  添加明细时默认复制最后一行记录</h3><blockquote>
+<p>setDetailAddUseCopy: function(detailMark, needCopy)</p>
+<p>说明：此方法在ready时调用，手动点添加时自动赋值最后行字段内容，覆盖节点前设置及默认值等，附件上传字段不予复制</p>
+<p>注：E9是异步ready执行后点添加明细才生效，例如默认新增空明细无效;</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detailMark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，明细1就是detail_1，以此递增类推</td>
+</tr>
+<tr>
+<td>needCopy</td>
+<td>Boolean</td>
+<td>是</td>
+<td>是否需要启用复制，true：启用，false：不启用</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">jQuery</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setDetailAddUseCopy</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-5-14-"><a name="5.14 根据明细行标识获取序号(第几行)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>5.14 根据明细行标识获取序号(第几行)</h3><blockquote>
+<p>最低版本要求：KB900190601</p>
+<p>场景：根据明细行的下标，获取当前是第几行明细，可用于提示某某行异常等</p>
+<p>getDetailRowSerailNum: function(mark, rowIndex)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mark</td>
+<td>String</td>
+<td>是</td>
+<td>明细表标示，支持两种格式<code>detail_${dindex}</code>或者<code>field${fieldid}_${rowIndex}</code></td>
+</tr>
+<tr>
+<td>rowIndex</td>
+<td>Int</td>
+<td>是</td>
+<td>行标识，第一种格式<code>detail_${dindex}</code>才需要传此参数</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailRowSerailNum</span><span class="pun">(</span><span class="str">"detail_1"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">);</span><span class="pln">    </span><span class="com">//获取明细1下标为3的行序号</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getDetailRowSerailNum</span><span class="pun">(</span><span class="str">"field222_3"</span><span class="pun">);</span><span class="pln">    </span><span class="com">//获取字段222对应明细表下标为3的行序号</span></code></li></ol></pre><h2 id="h2-6-"><a name="6.常用全局接口(与字段无关)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.常用全局接口(与字段无关)</h2><h3 id="h3-6-1-"><a name="6.1 获取当前打开请求的基础信息" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.1 获取当前打开请求的基础信息</h3><blockquote>
+<p>说明：包括路径id、节点id、表单id、主次账号信息</p>
+<p>getBaseInfo: function()</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getBaseInfo</span><span class="pun">());</span><span class="pln">    </span><span class="com">//返回当前请求基础信息</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="com">//输出对象说明：</span></code></li><li class="L3"><code><span class="pun">{</span></code></li><li class="L4"><code><span class="pln">    f_weaver_belongto_userid</span><span class="pun">:</span><span class="pln"> </span><span class="str">"5240"</span><span class="pln">    </span><span class="com">//用户信息</span></code></li><li class="L5"><code><span class="pln">    f_weaver_belongto_usertype</span><span class="pun">:</span><span class="pln"> </span><span class="str">"0"</span></code></li><li class="L6"><code><span class="pln">    formid</span><span class="pun">:</span><span class="pln"> </span><span class="pun">-</span><span class="lit">2010</span><span class="pln">       </span><span class="com">//表单id</span></code></li><li class="L7"><code><span class="pln">    isbill</span><span class="pun">:</span><span class="pln"> </span><span class="str">"1"</span><span class="pln">         </span><span class="com">//新表单/老表单</span></code></li><li class="L8"><code><span class="pln">    nodeid</span><span class="pun">:</span><span class="pln"> </span><span class="lit">19275</span><span class="pln">       </span><span class="com">//节点id</span></code></li><li class="L9"><code><span class="pln">    requestid</span><span class="pun">:</span><span class="pln"> </span><span class="lit">4487931</span><span class="pln">  </span><span class="com">//请求id</span></code></li><li class="L0"><code><span class="pln">    workflowid</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16084</span><span class="pln">   </span><span class="com">//路径id</span></code></li><li class="L1"><code><span class="pun">}</span></code></li></ol></pre><blockquote>
+<p>getGlobalStore: function()</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//获取当前操作人员</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getGlobalStore</span><span class="pun">().</span><span class="pln">commonParam</span><span class="pun">.</span><span class="pln">currentUserid</span></code></li><li class="L2"><code><span class="com">//获取当前操作人员名称</span></code></li><li class="L3"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getGlobalStore</span><span class="pun">().</span><span class="pln">commonParam</span><span class="pun">.</span><span class="pln">lastname</span></code></li><li class="L4"><code><span class="com">//获取当前节点名称</span></code></li><li class="L5"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getGlobalStore</span><span class="pun">().</span><span class="pln">commonParam</span><span class="pun">.</span><span class="pln">nodename</span></code></li></ol></pre><h3 id="h3-6-2-message-"><a name="6.2 可控制显示时间的message信息" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.2 可控制显示时间的message信息</h3><blockquote>
+<p>showMessage: function(msg, type, duration)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>String</td>
+<td>true</td>
+<td>提示信息内容</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>false</td>
+<td>提示类型，1(警告)、2(错误)、3(成功)、4(一般)，默认为1，不同类型提示信息效果不同</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Float</td>
+<td>false</td>
+<td>多长时间自动消失，单位秒，默认为1.5秒</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">showMessage</span><span class="pun">(</span><span class="str">"结束时间需大于开始时间"</span><span class="pun">);</span><span class="pln">   </span><span class="com">//警告信息，1.5s后自动消失</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">showMessage</span><span class="pun">(</span><span class="str">"运算错误"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span><span class="pln">  </span><span class="com">//错误信息，10s后消失</span></code></li></ol></pre><h3 id="h3-6-3-confirm-"><a name="6.3 系统样式的Confirm确认框" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.3 系统样式的Confirm确认框</h3><blockquote>
+<p>说明：兼容移动端，可自定义确认内容及按钮名称</p>
+<p>showConfirm: function(content, okEvent, cancelEvent, otherInfo={})</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>String</td>
+<td>是</td>
+<td>确认信息</td>
+</tr>
+<tr>
+<td>okEvent</td>
+<td>Function</td>
+<td>是</td>
+<td>点击确认事件</td>
+</tr>
+<tr>
+<td>cancelEvent</td>
+<td>Function</td>
+<td>否</td>
+<td>点击取消事件</td>
+</tr>
+<tr>
+<td>otherInfo</td>
+<td>Object</td>
+<td>否</td>
+<td>自定义信息(按钮名称)</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">showConfirm</span><span class="pun">(</span><span class="str">"确认删除吗？"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"删除成功"</span><span class="pun">);</span><span class="pln"> </span></code></li><li class="L2"><code><span class="pun">});</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">showConfirm</span><span class="pun">(</span><span class="str">"请问你是否需要技术协助？"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L5"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"点击确认调用的事件"</span><span class="pun">);</span></code></li><li class="L6"><code><span class="pun">},</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L7"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">"点击取消调用的事件"</span><span class="pun">);</span></code></li><li class="L8"><code><span class="pun">},{</span></code></li><li class="L9"><code><span class="pln">    title</span><span class="pun">:</span><span class="str">"信息确认"</span><span class="pun">,</span><span class="pln">       </span><span class="com">//弹确认框的title，仅PC端有效</span></code></li><li class="L0"><code><span class="pln">    okText</span><span class="pun">:</span><span class="str">"需要"</span><span class="pun">,</span><span class="pln">          </span><span class="com">//自定义确认按钮名称</span></code></li><li class="L1"><code><span class="pln">    cancelText</span><span class="pun">:</span><span class="str">"不需要"</span><span class="pln">     </span><span class="com">//自定义取消按钮名称</span></code></li><li class="L2"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-6-4-"><a name="6.4 表单顶部按钮、右键菜单置灰" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.4 表单顶部按钮、右键菜单置灰</h3><blockquote>
+<p>说明：设置表单顶部按钮、右键菜单置灰不可操作和恢复操作功能参数isDisabled</p>
+<p>controlBtnDisabled: function(isDisabled)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isDisabled</td>
+<td>boolean</td>
+<td>是</td>
+<td>true：按钮全部置灰不可操作,false：恢复按钮可操作状态</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="kwd">function</span><span class="pln"> subimtForm</span><span class="pun">(</span><span class="kwd">params</span><span class="pun">){</span></code></li><li class="L1"><code><span class="pln">        </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlBtnDisabled</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln">    </span><span class="com">//操作按钮置灰</span></code></li><li class="L2"><code><span class="pln">        </span><span class="pun">...</span></code></li><li class="L3"><code><span class="pln">        </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlBtnDisabled</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">);</span></code></li><li class="L4"><code><span class="pln">    </span><span class="pun">}</span></code></li></ol></pre><h3 id="h3-6-5-"><a name="6.5 调用右键按钮事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.5 调用右键按钮事件</h3><blockquote>
+<p>说明：调用表单右键事件逻辑，只可调用，不允许复写</p>
+<p>doRightBtnEvent: function(type)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>是</td>
+<td>按钮类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>pc端：console控制台通过mobx.toJS(WfForm.getGlobalStore().rightMenu.rightMenus)定位按钮type</p>
+<p>移动端：通过mobx.toJS(WfForm.getOperateStore().rightMenu.rightMenus)定位按钮type</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_SUBBACKNAME"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发提交需反馈</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_SUBMIT"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发提交不需反馈</span></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_WFSAVE"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发保存</span></code></li><li class="L3"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_REJECTNAME"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发退回</span></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_FORWARD"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发转发</span></code></li><li class="L5"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_REMARKADVICE"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发意见征询</span></code></li><li class="L6"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_TURNTODO"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发转办</span></code></li><li class="L7"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_DORETRACT"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发强制收回</span></code></li><li class="L8"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">doRightBtnEvent</span><span class="pun">(</span><span class="str">"BTN_PRINT"</span><span class="pun">);</span><span class="pln">     </span><span class="com">//触发打印</span></code></li></ol></pre><h3 id="h3-6-6-"><a name="6.6 刷新表单页面" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.6 刷新表单页面</h3><blockquote>
+<p>强制刷新表单页面，默认为当前requestid</p>
+<p>reloadPage: function(params={})</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>params</td>
+<td>Object</td>
+<td>否</td>
+<td>自定义参数，覆盖默认参数</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">reloadPage</span><span class="pun">();</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">reloadPage</span><span class="pun">({</span><span class="pln">requestid</span><span class="pun">:</span><span class="str">"11"</span><span class="pun">});</span><span class="pln">    </span><span class="com">//覆盖参数</span></code></li></ol></pre><h3 id="h3-6-7-"><a name="6.7 移动端打开链接方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.7 移动端打开链接方式</h3><blockquote>
+<p>仅支持移动端，特别是非表单主界面(例如：明细编辑)需要用此方式打开链接。<br>此方式打开链接返回不会刷新表单</p>
+<p>window.showHoverWindow：function(url,baseRoute)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>是</td>
+<td>打开的链接地址</td>
+</tr>
+<tr>
+<td>baseRoute</td>
+<td>String</td>
+<td>是</td>
+<td>当前路由地址，具体见url地址，明细编辑打开传’/req/editDetailRow’</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">showHoverWindow</span><span class="pun">(</span><span class="str">'/workflow/test.jsp'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'/req'</span><span class="pun">);</span><span class="pln">   </span><span class="com">//主界面打开链接</span></code></li><li class="L1"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">showHoverWindow</span><span class="pun">(</span><span class="str">'https://www.baidu.com'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'/req/editDetailRow'</span><span class="pun">);</span><span class="pln">   </span><span class="com">//明细行编辑界面打开链接</span></code></li></ol></pre><h3 id="h3-6-8-"><a name="6.8 扩展提交操作发送给服务端的参数" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.8 扩展提交操作发送给服务端的参数</h3><blockquote>
+<p>最低版本要求：KB900190801</p>
+<p>自定义扩展提交/保存动作发送给服务端的参数，服务端可通过request.getParameter方式取到对应参数值</p>
+<p>推荐：扩展的自定义参数都以cus_开头，避免影响/覆盖标准产品所必需的参数，导致功能异常</p>
+<p>appendSubmitParam: function(obj={})</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td>Object</td>
+<td>否</td>
+<td>JSON格式自定义参数</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">appendSubmitParam</span><span class="pun">({</span><span class="pln">cus_param1</span><span class="pun">:</span><span class="str">"11"</span><span class="pun">,</span><span class="pln"> cus_param2</span><span class="pun">:</span><span class="str">"测试"</span><span class="pun">});</span><span class="pln"> </span><span class="com">//服务端可通过request对象取到参数值request.getParameter("cus_param1"):</span></code></li></ol></pre><h3 id="h3-6-9-"><a name="6.9 获取校验必填逻辑第一个未必填的字段" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.9 获取校验必填逻辑第一个未必填的字段</h3><blockquote>
+<p>最低版本要求：KB900191201</p>
+<p>场景：调用产品的必填校验逻辑，获取第一个未必填字段；<br>例如结合接口2.1中WfForm.OPER_BEOPER_BEFOREVERIFY可实现自定义控制必填提示的效果</p>
+<p>getFirstRequiredEmptyField: function()</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">var</span><span class="pln"> emptyField </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getFirstRequiredEmptyField</span><span class="pun">();</span><span class="pln"> </span><span class="com">//获取调用时刻的第一个未必填字段，返回值格式是`field${fieldid}_${rowIndex}`</span></code></li></ol></pre><h3 id="h3-6-10-"><a name="6.10 触发一次必填验证" class="reference-link"></a><span class="header-link octicon octicon-link"></span>6.10 触发一次必填验证</h3><blockquote>
+<p>最低版本要求：KB900191201</p>
+<p>手动触发一次必填验证并提示，可选控制校验必须新增空明细/校验字段必填</p>
+<p>verifyFormRequired: function(mustAddDetail=true, fieldRequired=true)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mustAddDetail</td>
+<td>Boolean</td>
+<td>否</td>
+<td>是否校验必须新增空明细，默认为是</td>
+</tr>
+<tr>
+<td>fieldRequired</td>
+<td>Boolean</td>
+<td>否</td>
+<td>是否校验字段必填，默认为是</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">verifyFormRequired</span><span class="pun">();</span><span class="pln"> </span><span class="com">//触发必填验证并提示，先校验必须新增空明细，后校验字段必填</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="kwd">var</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">verifyFormRequired</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span><span class="pln">        </span><span class="com">//仅校验字段必填并提示</span></code></li><li class="L3"><code><span class="kwd">if</span><span class="pun">(!</span><span class="pln">result</span><span class="pun">)</span></code></li><li class="L4"><code><span class="pln">    alert</span><span class="pun">(</span><span class="str">'存在未必填情况'</span><span class="pun">);</span></code></li></ol></pre><h2 id="h2-7-"><a name="7.不同字段类型特定接口(限定指定字段类型可用)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.不同字段类型特定接口(限定指定字段类型可用)</h2><h3 id="h3-7-1-"><a name="7.1 扩展浏览按钮取数接口参数值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.1 扩展浏览按钮取数接口参数值</h3><blockquote>
+<p>限定条件：仅适用非日期时间的浏览按钮类型</p>
+<p>场景：控制浏览按钮可选数据范围，限定范围、依赖表单字段过滤数据范围等；对联想输入范围及弹窗选择范围都生效；</p>
+<p>实现方式：接口扩充的参数会通过url参数提交到服务端接口，需结合修改浏览按钮接口类方可生效</p>
+<p>appendBrowserDataUrlParam: function(fieldMark, jsonParam)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>jsonParam</td>
+<td>JSON</td>
+<td>是</td>
+<td>扩展的url参数，JSON中key-value格式</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">appendBrowserDataUrlParam</span><span class="pun">(</span><span class="str">"field395"</span><span class="pun">,{</span><span class="str">"customerid"</span><span class="pun">:</span><span class="str">"2"</span><span class="pun">});</span><span class="com">//给浏览按钮395请求后台数据时增加url参数customerid</span></code></li></ol></pre><h3 id="h3-7-2-"><a name="7.2 获取浏览按钮的显示值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.2 获取浏览按钮的显示值</h3><blockquote>
+<p>限定条件：仅适用非日期时间的浏览按钮类型</p>
+<p>获取浏览按钮的显示名称，多个则以splitChar字符分隔拼接成串</p>
+<p>getBrowserShowName:function(fieldMark,splitChar)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>splitChar</td>
+<td>String</td>
+<td>否</td>
+<td>分隔符，默认以逗号分隔</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getBrowserShowName</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">);</span><span class="pln">  </span><span class="com">//以逗号分隔获取浏览按钮字段显示值</span></code></li></ol></pre><h3 id="h3-7-3-"><a name="7.3 移除选择框字段选项" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.3 移除选择框字段选项</h3><blockquote>
+<p>限定条件：仅适用选择框类型字段</p>
+<p>removeSelectOption: function(fieldMark, optionKeys)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>optionKeys</td>
+<td>String</td>
+<td>是</td>
+<td>需要移除的Option选项key值，多个以逗号分隔</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">removeSelectOption</span><span class="pun">(</span><span class="str">"field112"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"3,4"</span><span class="pun">);</span><span class="pln">   </span><span class="com">//移除选择框中id值为3/4的选项</span></code></li></ol></pre><h3 id="h3-7-4-"><a name="7.4 控制选择框字段选项" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.4 控制选择框字段选项</h3><blockquote>
+<p>限定条件：仅适用选择框类型字段</p>
+<p>controlSelectOption:function(fieldMark, optionKeys)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>optionKeys</td>
+<td>String</td>
+<td>是</td>
+<td>完全控制选择框的选项范围</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlSelectOption</span><span class="pun">(</span><span class="str">"field112"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"1,2,4"</span><span class="pun">);</span><span class="pln">  </span><span class="com">//控制选择框只显示1/2/4的选项</span></code></li><li class="L1"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlSelectOption</span><span class="pun">(</span><span class="str">"field112"</span><span class="pun">,</span><span class="pln"> </span><span class="str">""</span><span class="pun">);</span><span class="pln">  </span><span class="com">//清除选择框所有选项</span></code></li></ol></pre><h3 id="h3-7-5-"><a name="7.5 获取选择框字段的显示值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.5 获取选择框字段的显示值</h3><blockquote>
+<p>限定条件：仅适用选择框类型字段</p>
+<p>获取选择框类型的显示名称，多个则以splitChar字符分隔拼接成串</p>
+<p>getSelectShowName:function(fieldMark,splitChar)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>splitChar</td>
+<td>String</td>
+<td>否</td>
+<td>分隔符，默认以逗号分隔(只有复选框多选才会用到)</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getSelectShowName</span><span class="pun">(</span><span class="str">"field110_3"</span><span class="pun">);</span><span class="pln">  </span><span class="com">//获取选择框字段显示值</span></code></li></ol></pre><h3 id="h3-7-6-"><a name="7.6 文本字段可编辑状态，当值为空显示默认灰色提示信息，鼠标点击输入时提示消失" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.6 文本字段可编辑状态，当值为空显示默认灰色提示信息，鼠标点击输入时提示消失</h3><blockquote>
+<p>限定条件：仅支持单行文本、整数、浮点数、千分位、多行文本字段(非html)字段类型；支持主字段及明细字段</p>
+<p>setTextFieldEmptyShowContent:function(fieldMark,showContent)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>showContent</td>
+<td>String</td>
+<td>是</td>
+<td>空值时显示的提示信息，灰色</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">jQuery</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setTextFieldEmptyShowContent</span><span class="pun">(</span><span class="str">"field27555"</span><span class="pun">,</span><span class="pln">  </span><span class="str">"单文本默认提示信息1"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setTextFieldEmptyShowContent</span><span class="pun">(</span><span class="str">"field27566"</span><span class="pun">,</span><span class="pln">  </span><span class="str">"多文本默认提示2"</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pln">    </span><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setTextFieldEmptyShowContent</span><span class="pun">(</span><span class="str">"field222_0"</span><span class="pun">,</span><span class="pln">  </span><span class="str">"明细字段提示信息"</span><span class="pun">);</span><span class="pln"> </span><span class="com">//需要结合接口5.9添加行事件一并使用</span></code></li><li class="L4"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-7-7-props"><a name="7.7 复写浏览按钮组件的props" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.7 复写浏览按钮组件的props</h3><blockquote>
+<p>仅支持浏览按钮类型，谨慎使用，完全重写覆盖浏览按钮的props</p>
+<p>只是传递props，具体传递的属性实现何种需求由组件内部控制</p>
+<p>overrideBrowserProp: function(fieldMark,jsonParam)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>jsonParam</td>
+<td>JSON</td>
+<td>是</td>
+<td>扩展或复写的props参数</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">overrideBrowserProp</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,{</span></code></li><li class="L1"><code><span class="pln">    onBeforeFocusCheck</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">success</span><span class="pun">,</span><span class="pln"> fail</span><span class="pun">){</span><span class="com">/***/</span><span class="pun">}</span></code></li><li class="L2"><code><span class="pun">});</span><span class="pln">     </span><span class="com">//复写浏览按钮字段111的props</span></code></li></ol></pre><h3 id="h3-7-8-"><a name="7.8 控制日期浏览按钮的可选日期范围" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.8 控制日期浏览按钮的可选日期范围</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>仅支持日期类型，控制手动选择时的可选日期范围</p>
+<p>controlDateRange: function(fieldMark,start,end)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>start</td>
+<td>String</td>
+<td>是</td>
+<td>支持两种格式，第一种标准的日期格式，比如2019-05-28，第二种整数，相比于当前日期往前/后多少天</td>
+</tr>
+<tr>
+<td>end</td>
+<td>String</td>
+<td>否</td>
+<td>格式与start参数一致</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDateRange</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span><span class="pln"> </span><span class="com">//限定日期可选范围，往前5天，往后10天</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDateRange</span><span class="pun">(</span><span class="str">"field111"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2019-12-31'</span><span class="pun">);</span><span class="pln">   </span><span class="com">//限定今天至本年</span></code></li><li class="L3"><code></code></li><li class="L4"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlDateRange</span><span class="pun">(</span><span class="str">"field222_0"</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2019-05-01'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'2019-05-31'</span><span class="pun">);</span><span class="pln">   </span><span class="com">//明细字段，限定当月</span></code></li></ol></pre><h3 id="h3-7-9-radio-"><a name="7.9 控制Radio框字段打印是否仅显示选中项文字" class="reference-link"></a><span class="header-link octicon octicon-link"></span>7.9 控制Radio框字段打印是否仅显示选中项文字</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>仅支持选择框中单选框类型，打印场景，是否仅显示选中项文字，都未选中显示空</p>
+<p>controlRadioPrintText: function(fieldid)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段id，格式<code>${字段ID}</code>,支持明细字段</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">controlRadioPrintText</span><span class="pun">(</span><span class="str">"12580"</span><span class="pun">);</span><span class="pln">  </span><span class="com">//单选框字段12580打印只显示文字</span></code></li></ol></pre><h2 id="h2-8-"><a name="8.签字意见接口" class="reference-link"></a><span class="header-link octicon octicon-link"></span>8.签字意见接口</h2><h3 id="h3-8-1-"><a name="8.1 获取签字意见内容" class="reference-link"></a><span class="header-link octicon octicon-link"></span>8.1 获取签字意见内容</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>getSignRemark: function()</p>
+</blockquote>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">getSignRemark</span><span class="pun">();</span><span class="pln">  </span><span class="com">//获取签字意见内容</span></code></li></ol></pre><h3 id="h3-8-2-"><a name="8.2 设置签字意见内容" class="reference-link"></a><span class="header-link octicon octicon-link"></span>8.2 设置签字意见内容</h3><blockquote>
+<p>最低版本要求：KB900190501</p>
+<p>setSignRemark: function(text,isClear=true,isAfter=true,callback)</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>是</td>
+<td>需设置的内容</td>
+</tr>
+<tr>
+<td>isClear</td>
+<td>Boolean</td>
+<td>否</td>
+<td>是否先清除意见，默认为true，即覆盖意见内容，false为追加意见内容</td>
+</tr>
+<tr>
+<td>isAfter</td>
+<td>Boolean</td>
+<td>否</td>
+<td>追加的位置，默认为true，原意见内容尾部追加，false再头部追加</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>Function</td>
+<td>否</td>
+<td>意见设置成功后的回调函数</td>
+</tr>
+</tbody>
+</table>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setSignRemark</span><span class="pun">(</span><span class="str">"覆盖设置签字意见内容"</span><span class="pun">);</span></code></li><li class="L1"><code></code></li><li class="L2"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">setSignRemark</span><span class="pun">(</span><span class="str">"原有意见内容前追加请审批"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></code></li></ol></pre><h3 id="h3-8-3-"><a name="8.3 扩展签字意见输入框底部按钮" class="reference-link"></a><span class="header-link octicon octicon-link"></span>8.3 扩展签字意见输入框底部按钮</h3><blockquote>
+<p>签字意见输入框底部按钮，在产品内置的附件、文档、流程基础上，支持自定义扩充</p>
+<p>appendSignEditorBottomBar: function(comps=[])</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comps</td>
+<td>React Comp Array</td>
+<td>是</td>
+<td>需要扩充的React组件数组</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="typ">WfForm</span><span class="pun">.</span><span class="pln">appendSignEditorBottomBar</span><span class="pun">([</span></code></li><li class="L1"><code><span class="pln">    </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"div"</span><span class="pun">,{</span><span class="pln">className</span><span class="pun">:</span><span class="str">"wf-req-signbtn"</span><span class="pun">,</span><span class="pln">children</span><span class="pun">:</span><span class="str">"自定义按钮1"</span><span class="pun">}),</span></code></li><li class="L2"><code><span class="pln">    </span><span class="str">&lt;div&gt;</span><span class="pun">自定义按钮</span><span class="lit">2</span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></code></li><li class="L3"><code><span class="pun">]);</span></code></li></ol></pre><h2 id="h2-9-e8-"><a name="9.历史E8代码块的相关兼容" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.历史E8代码块的相关兼容</h2><blockquote>
+<p>以下方法不推荐使用，只为兼容历史代码块，上述WfForm中API都涵盖包括</p>
+<p>建议全部改造通过WfForm接口实现，使用老版本接口、操作Dom结构等，很容易引发问题及后续版本升级不兼容</p>
+</blockquote>
+<h3 id="h3-9-1-"><a name="9.1 提交事件执行自定义函数" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.1 提交事件执行自定义函数</h3><blockquote>
+<p>建议使用2.1 拦截提交事件代替</p>
+<p>比如checkCustomize、checkCarSubmit会继续执行,根据函数返回值判断是否阻塞提交，返回值true：继续流转，flase:阻断提交</p>
+</blockquote>
+<p>开发示例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">checkCustomize </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    </span><span class="kwd">var</span><span class="pln"> flag </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></code></li><li class="L2"><code><span class="pln">    </span><span class="com">//...</span></code></li><li class="L3"><code><span class="pln">    </span><span class="kwd">return</span><span class="pln"> flag</span><span class="pun">;</span></code></li><li class="L4"><code><span class="pun">}</span></code></li></ol></pre><h3 id="h3-9-2-bindpropertychange"><a name="9.2 字段值变化触发事件bindPropertyChange" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.2 字段值变化触发事件bindPropertyChange</h3><blockquote>
+<p>建议使用4.1 监听字段变化代替</p>
+<p>说明：与E8一致，依赖DOM，字段值变化时触发此函数;<br>自定义函数默认传递以下三个参数，参数1：触发字段的DOM对象，参数2：触发字段的标示(field27563等)，参数3：修改后的值</p>
+</blockquote>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">jQuery</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L1"><code><span class="pln">    jQuery</span><span class="pun">(</span><span class="str">"#field27563"</span><span class="pun">).</span><span class="pln">bindPropertyChange</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">value</span><span class="pun">){</span></code></li><li class="L2"><code><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"tri..."</span><span class="pun">,</span><span class="pln">obj</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln">value</span><span class="pun">);</span></code></li><li class="L3"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L4"><code><span class="pun">});</span></code></li></ol></pre><h3 id="h3-9-3-"><a name="9.3 明细新增行渲染后触发事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.3 明细新增行渲染后触发事件</h3><blockquote>
+<p>建议使用2.2钩子事件代替</p>
+<p>说明：重载_customAddFun”+groupid+”函数，groupid从0开始递增，0代表明细1；不论手动添加、联动添加、接口添加都会触发</p>
+</blockquote>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">function</span><span class="pln"> _customAddFun1</span><span class="pun">(</span><span class="pln">addIndexStr</span><span class="pun">){</span><span class="pln">      </span><span class="com">//明细2新增成功后触发事件，addIndexStr即刚新增的行标示，添加多行为(1,2,3)</span></code></li><li class="L1"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"新增的行标示："</span><span class="pun">+</span><span class="pln">addIndexStr</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">}</span></code></li></ol></pre><h3 id="h3-9-4-"><a name="9.4 明细删除行渲染后触发事件" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.4 明细删除行渲染后触发事件</h3><blockquote>
+<p>建议使用2.2钩子事件代替</p>
+<p>说明：重载_customDelFun”+groupid+”函数，groupid从0开始递增，0代表明细1；不论手动删除、接口删除都会触发</p>
+</blockquote>
+<p>样例</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">function</span><span class="pln"> _customDelFun1</span><span class="pun">(){</span><span class="pln">  </span><span class="com">//明细2删除成功后触发事件</span></code></li><li class="L1"><code><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"删除明细"</span><span class="pun">);</span></code></li><li class="L2"><code><span class="pun">}</span></code></li></ol></pre><h3 id="h3-9-5-window-_writebackdata"><a name="9.5 修改浏览按钮字段值window._writeBackData" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.5 修改浏览按钮字段值window._writeBackData</h3><blockquote>
+<p>此方法只为兼容E8已有代码，新开发的请使用WfForm.changeFieldValue方式赋值</p>
+</blockquote>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fieldMark</td>
+<td>String</td>
+<td>是</td>
+<td>字段标示，格式<code>field${字段ID}_${明细行号}</code></td>
+</tr>
+<tr>
+<td>isMustInput</td>
+<td>String</td>
+<td>是</td>
+<td>E8参数，E9暂时不用</td>
+</tr>
+<tr>
+<td>data</td>
+<td>JSON</td>
+<td>是</td>
+<td>修改的浏览按钮数据，格式{id:”<strong><em>“,name:”</em></strong>“}</td>
+</tr>
+<tr>
+<td>_options</td>
+<td>JSON</td>
+<td>否</td>
+<td>修改方式，格式{replace:false,isSingle:true}，replace或isSingle任意一个为true即为覆盖修改，否则为在原有浏览按钮数据基础上追加修改，默认为覆盖修改</td>
+</tr>
+</tbody>
+</table>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">    _writeBackData</span><span class="pun">(</span><span class="str">"field110"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">id</span><span class="pun">:</span><span class="str">"22"</span><span class="pun">,</span><span class="pln">name</span><span class="pun">:</span><span class="str">"lzy"</span><span class="pun">},{</span><span class="pln">replace</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln">isSingle</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">});</span><span class="pln">    </span><span class="com">//多人力浏览按钮追加个值lzy</span></code></li></ol></pre><h3 id="h3-9-6-jquery-"><a name="9.6 少用jQuery操作" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.6 少用jQuery操作</h3><blockquote>
+<p>不推荐使用,历史jQuery(“#field111”).val()取值、赋值等操作已兼容</p>
+</blockquote>
+<h3 id="h3-9-7-js-"><a name="9.7 禁止JS原生操作" class="reference-link"></a><span class="header-link octicon octicon-link"></span>9.7 禁止JS原生操作</h3><blockquote>
+<p>不允许，会引发各种不可控异常</p>
+<p>类似document.write(“”);document.getElementById(“field111”).value操作需要调整为WfForm接口操作</p>
+</blockquote>
+<h2 id="h2-10-"><a name="10 常用配置文件修改方式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10 常用配置文件修改方式</h2><blockquote>
+<p>以下配置修改都是针对当前ecology系统全部流程生效</p>
+</blockquote>
+<h3 id="h3-10-1-"><a name="10.1 修改意见默认字体" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.1 修改意见默认字体</h3><blockquote>
+<p>sysadmin账号登录，在浏览器调用接口的方式修改配置</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=signinput_default_fontfamily&amp;value=仿宋_GB2312/FangSong_GB2312</p>
+<blockquote>
+<p>value参数(字体)范围</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字体值</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仿宋_GB2312/FangSong_GB2312</td>
+<td></td>
+</tr>
+<tr>
+<td>宋体/SimSun</td>
+<td></td>
+</tr>
+<tr>
+<td>微软雅黑/Microsoft YaHei</td>
+<td></td>
+</tr>
+<tr>
+<td>楷体/KaiTi</td>
+<td></td>
+</tr>
+<tr>
+<td>黑体/SimHei</td>
+<td></td>
+</tr>
+<tr>
+<td>Arial/Arial, Helvetica, sans-serif</td>
+<td></td>
+</tr>
+<tr>
+<td>新宋体/NSimSun</td>
+<td></td>
+</tr>
+<tr>
+<td>楷体_GB2312/KaiTi_GB2312</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="h3-10-2-"><a name="10.2 修改意见默认字体大小" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.2 修改意见默认字体大小</h3><blockquote>
+<p>sysadmin账号登录，在浏览器调用接口的方式修改配置</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=signinput_default_fontsize&amp;value=36/36px</p>
+<blockquote>
+<p>value参数(字体大小)范围</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字体大小</th>
+<th>—</th>
+<th>—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/8px</td>
+<td>9/9px</td>
+<td>10/10px</td>
+<td>11/11px</td>
+</tr>
+<tr>
+<td>2/12px</td>
+<td>14/14px</td>
+<td>16/16px</td>
+<td>18/18px</td>
+</tr>
+<tr>
+<td>20/20px</td>
+<td>22/22px</td>
+<td>24/24px</td>
+<td>26/26px</td>
+</tr>
+<tr>
+<td>28/28px</td>
+<td>36/36px</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="h3-10-3-"><a name="10.3 流程自定义浏览框缓存功能开关" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.3 流程自定义浏览框缓存功能开关</h3><blockquote>
+<p>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=un_use_customize_browser_cache&amp;value=0</p>
+<blockquote>
+<p>value参数1关闭，0开启</p>
+<p>缓存任务参数及清理数据缓存页面（任务功能：保存表单、打开表单进行自定义浏览框数据缓存及刷新、以及清理自定义浏览框缓存数据批量清理以及单个流程清理）</p>
+</blockquote>
+<p>/workflow/request/CustomizeBrowserCacheUtil.jsp</p>
+<h3 id="h3-10-4-html-html-"><a name="10.4 非多行文本html字段类型支持html格式" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.4 非多行文本html字段类型支持html格式</h3><blockquote>
+<p>场景：E9限制只有当字段类型为多行文本且勾选html的字段，内容才支持html格式<br>单行文本字段、多行文本字段是不支持，但是部分场景此类字段值是通过外面接口等情况赋值html串<br>此情况可通过改配置实现</p>
+</blockquote>
+<p>第一步：<br>找到需要支持html格式的字段id(可通过表单设计器模板单元格选中看右下角)<br>假设字段id为12345，则格式为： field12345_1<br>(如是老表单，则格式为 field12345_0，老表单指字段从字段库选择生成的表单，一般是E8系统前)<br>第二步：<br>执行SQL(不同数据库请转换拼接符)</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">update workflow_config </span><span class="kwd">set</span><span class="pln"> value</span><span class="pun">=</span><span class="pln">value</span><span class="pun">||</span><span class="str">',field12345_1'</span><span class="pln"> </span><span class="kwd">where</span><span class="pln"> name</span><span class="pun">=</span><span class="str">'support_html_textarea_field'</span></code></li></ol></pre><p>第三步：<br>重启resin生效</p>
+<h3 id="h3-10-5-pc-"><a name="10.5 PC端-流程表单显示底部耗时信息开个(调试分析用)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.5 PC端-流程表单显示底部耗时信息开个(调试分析用)</h3><blockquote>
+<p>最低版本要求：KB900190801<br>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=show_duration_log&amp;value=1</p>
+<blockquote>
+<p>value参数1开启，0关闭，默认为关闭</p>
+</blockquote>
+<h3 id="h3-10-6-"><a name="10.6 明细开启横向滚动条情况下，首行(按钮所在行)固定不跟随滚动条滚动" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.6 明细开启横向滚动条情况下，首行(按钮所在行)固定不跟随滚动条滚动</h3><blockquote>
+<p>最低版本要求：KB900191101<br>场景: 明细开启横向滚动条、首行不包含除按钮/文字外类型、首行含添加删除按钮且处于非列锁定区域<br>满足上述三条件，首行会固定，不跟随横向滚动条滚动，<br>此时根据模板不同可能会存在首行与下一行存在不对齐问题<br>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=detail_locked_button_row&amp;value=1</p>
+<blockquote>
+<p>value参数1锁定，0取消锁定，默认为锁定</p>
+</blockquote>
+<h3 id="h3-10-7-"><a name="10.7 明细字段合计给主字段，当明细未添加行，赋零值或空值" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.7 明细字段合计给主字段，当明细未添加行，赋零值或空值</h3><blockquote>
+<p>场景: 配置列合计给主字段，当明细没有添加过行，主表合计字段，<br>有些场景需要赋值为空，用于校验必填<br>有些场景需要赋值为零，用于出口判断</p>
+<p>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=colRule_noRow_empty&amp;value=1</p>
+<blockquote>
+<p>value参数1赋零值，0赋空值，默认为赋空值</p>
+</blockquote>
+<h3 id="h3-10-8-pc-"><a name="10.8 pc端-手写签批按钮开关" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.8 pc端-手写签批按钮开关</h3><blockquote>
+<p>最低版本要求：KB900191001<br>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=handwrittensign_switch&amp;value=1</p>
+<blockquote>
+<p>value参数1开启，0关闭</p>
+</blockquote>
+<h3 id="h3-10-9-radio-"><a name="10.9 移动端-选择框单选框类型显示成radio效果开关" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.9 移动端-选择框单选框类型显示成radio效果开关</h3><blockquote>
+<p>最低版本要求：KB900191101<br>sysadmin访问链接修改配置，实时生效</p>
+</blockquote>
+<p>/api/workflow/index/updateWfConfig?name=mobile_show_radio&amp;value=1</p>
+<blockquote>
+<p>value参数1开启，0关闭，默认为关闭</p>
+</blockquote>
+<h3 id="h3-10-10-"><a name="10.10 移动端-表单正文、附件签批功能开关" class="reference-link"></a><span class="header-link octicon octicon-link"></span>10.10 移动端-表单正文、附件签批功能开关</h3><blockquote>
+<p>最低版本要求：KB900190308<br>修改配置文件：MobileWFOfficeSign.properties</p>
+</blockquote>
+<p>mobileWFOffice=1</p>
+<blockquote>
+<p>mobileWFOffice参数1开启，0关闭，开启后显示签批按钮，否则不显示签批按钮</p>
+</blockquote>
+<p>mobilePDFSign=1</p>
+<blockquote>
+<p>mobilePDFSign 最低版本要求：KB900190901<br>mobilePDFSign 配置项只对pdf文件生效<br>mobilePDFSign 参数1 pdf文件签批后放在签字意见附件中 参数2 pdf文件签批后直接替换原文件  参数3 由用户选择签批后放在签字意见附件中还是替换原文件</p>
+</blockquote>
+<h2 id="h2-11-css-"><a name="11 常用CSS样式案例分享" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11 常用CSS样式案例分享</h2><blockquote>
+<p>根据客户需求范围，灵活变通<br>仅对当前模板生效—-&gt;写在代码块里面<br>仅对当前路径所有节点生效—-&gt;写在路径基础设置-自定义页面(CSS文件)<br>对系统所有路径生效—-&gt;写在应用设置-全局自定义页面(CSS文件)</p>
+<p>注：如写在代码块中需包一层style标签，写在CSS文件中不需要</p>
+</blockquote>
+<h3 id="h3-11-1-"><a name="11.1 实现明细添加删除按钮靠左显示" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11.1 实现明细添加删除按钮靠左显示</h3><blockquote>
+<p>场景：明细添加删除按钮，始终靠右显示，如何实现靠左显示</p>
+</blockquote>
+<p>插入样式到代码块：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="tag">&lt;style&gt;</span></code></li><li class="L1"><code><span class="pun">.</span><span class="pln">detailButtonDiv</span><span class="pun">{</span><span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">}</span></code></li><li class="L2"><code><span class="tag">&lt;/style&gt;</span></code></li></ol></pre><p>如写到CSS文件则不需要style标签</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">.</span><span class="pln">detailButtonDiv</span><span class="pun">{</span><span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">}</span></code></li></ol></pre><h3 id="h3-11-2-"><a name="11.2 实现单元格图片居中、自适应缩放" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11.2 实现单元格图片居中、自适应缩放</h3><blockquote>
+<p>场景：单元格插入图片，始终按原始尺寸从左上角平铺显示，如何居中，如何自适应缩放</p>
+<p>最低版本要求：KB900190901</p>
+</blockquote>
+<p>图片所在单元格增加自定义属性class标识：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">imageCell</span></code></li></ol></pre><p>单元格宽度大于图片尺寸，实现图片居中，增加样式：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">.</span><span class="pln">imageCell_swap</span><span class="pun">{</span><span class="pln">background</span><span class="pun">-</span><span class="pln">position</span><span class="pun">:</span><span class="pln">center</span><span class="pun">}</span></code></li></ol></pre><p>单元格宽度小于图片尺寸，实现图片自适应缩放显示完整，增加样式：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">.</span><span class="pln">imageCell_swap</span><span class="pun">{</span><span class="pln">background</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%}</span></code></li></ol></pre><h3 id="h3-11-3-"><a name="11.3 控制浏览按钮链接颜色" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11.3 控制浏览按钮链接颜色</h3><blockquote>
+<p>场景：浏览按钮链接的颜色不受单元格颜色控制，如何修改浏览按钮链接颜色</p>
+</blockquote>
+<p>方案一：要求版本达到KB900190901以上</p>
+<p>可通过登录sysadmin，访问以下链接开启配置，开启后浏览按钮链接颜色完全取单元格设置的颜色<br>/api/workflow/index/updateWfConfig?name=browser_color_controlByCell&amp;value=1<br>(value参数0关闭，1开启，默认为关闭)</p>
+<p>方案二：不限制版本</p>
+<p>浏览按钮所在单元格增加自定义属性class标识：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">browserColorCell</span></code></li></ol></pre><p>增加样式</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">.</span><span class="pln">browserColorCell a</span><span class="pun">{</span><span class="pln">color</span><span class="pun">:</span><span class="pln">red </span><span class="pun">!</span><span class="pln">important</span><span class="pun">}</span><span class="pln">  </span><span class="com">//强制将浏览按钮链接显示为红色</span></code></li></ol></pre><h3 id="h3-11-4-"><a name="11.4 控制主表选择框字段最小宽度" class="reference-link"></a><span class="header-link octicon octicon-link"></span>11.4 控制主表选择框字段最小宽度</h3><blockquote>
+<p>场景：主表选择框字段，最小宽度要求100px，当选项仅为”是/否”时，如何再减小宽度</p>
+</blockquote>
+<p>选择框所在单元格增加自定义属性class标识：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">selectCell</span></code></li></ol></pre><p>增加样式</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">.</span><span class="pln">selectCell </span><span class="pun">.</span><span class="pln">wea</span><span class="pun">-</span><span class="kwd">select</span><span class="pun">{</span><span class="pln">min</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="lit">50px</span><span class="pln"> </span><span class="pun">!</span><span class="pln">important</span><span class="pun">}</span></code></li></ol></pre><h2 id="h2-12-"><a name="12 其它场景分享" class="reference-link"></a><span class="header-link octicon octicon-link"></span>12 其它场景分享</h2><h3 id="h3-12-1-"><a name="12.1 移动端异构系统提交表单后，如何刷新流程列表" class="reference-link"></a><span class="header-link octicon octicon-link"></span>12.1 移动端异构系统提交表单后，如何刷新流程列表</h3><blockquote>
+<p>最低支持版本：KB900191101</p>
+</blockquote>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="com">//提交后跳转至此页面</span></code></li><li class="L1"><code><span class="pln">window</span><span class="pun">.</span><span class="pln">location</span><span class="pun">.</span><span class="pln">href </span><span class="pun">=</span><span class="pln"> </span><span class="pun">当前</span><span class="pln">ecology</span><span class="pun">服务器地址+</span><span class="str">"/workflow/workflow/WfRefreshList.jsp"</span></code></li></ol></pre><blockquote>
+<p>注意：移动端可能存在反向代理，请将当前ecology服务器地址配置成反向代理对应的地址</p>
+</blockquote>
+<p><img src="./泛微在线文档前端 SDK_files/file_1587363958000.png" alt=""></p>
+</div>
+    </div>
+    <div id="not-access" style="display: none;">
+        <div class="not-access-content">无访问权限，请<a href="https://e-cloudstore.com/#/login" target="_blank">登录</a></div>
+    </div>
+</div>
+
+<script type="application/javascript" src="./泛微在线文档前端 SDK_files/jquery.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/marked.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/prettify.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/raphael.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/underscore.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/sequence-diagram.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/flowchart.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/jquery.flowchart.min.js"></script>
+<script src="./泛微在线文档前端 SDK_files/viewer.min.js"></script>
+<!-- <script src="drag.js"></script> -->
+<script type="application/javascript" src="./泛微在线文档前端 SDK_files/editormd.js"></script>
+<script>
+    // window.server = "https://e-cloudstore.com";
+    // window.server = 'http://192.168.42.176:8081';
+</script>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+        margin: 0;
+        padding: 0;
+    }
+
+    article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+        display: block;
+    }
+
+    audio, canvas, video {
+        display: inline-block;
+    }
+
+    img {
+        border: none;
+        vertical-align: middle;
+    }
+
+    ul, ol {
+        /*list-style: none;*/
+    }
+
+    .clear {
+        *zoom: 1;           /* for IE 6/7 */
+    }
+
+    .clear:before, .clear:after {
+        height: 0;
+        content: "";
+        font-size: 0;
+        display: table;
+        line-height: 0;     /* for Opera */
+        visibility: hidden;
+    }
+
+    .clear:after {
+        clear: both;
+    }
+
+    body {
+        font-size: 14px;
+        color: #666;
+        font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+        background: #fff;
+        text-align: center;
+    }
+
+    #layout {
+        text-align: left;
+    }
+
+    #layout > header, .btns {
+        padding: 15px 0;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .btns {
+        padding-top: 0;
+    }
+
+    .btns button {
+        padding: 2px 8px;
+    }
+
+    #layout > header > h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .btns button, .btn {
+        padding: 8px 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-transition: background 300ms ease-out;
+        transition: background 300ms ease-out;
+    }
+
+    .btns button:hover, .btn:hover {
+        background: #f6f6f6;
+    }
+
+    body {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    #layout > header, .btns {
+        width: auto;
+    }
+
+    #sidebar {
+        width: 400px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        background: #fff;
+        z-index: 100;
+        padding: 18px;
+        border: 1px solid #ddd;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    #sidebar:hover {
+        overflow: auto;
+    }
+
+    #sidebar h1 {
+        font-size: 16px;
+    }
+
+    .sidebar-upfold {
+        width: 18px;
+        height: 60px;
+        position: fixed;
+        top: 50%;
+        left: 400px;
+        margin-top: -30px;
+        z-index: 11;
+        cursor: pointer;
+        background: url(/leftTree-show.png) no-repeat -2px 0;
+        transition: background 0.6s;
+        -webkit-transition: background 0.6s;
+    }
+    .sidebar-upfold:hover {
+        background: url(/leftTree-show-hover.png) no-repeat -2px 0;
+    }
+
+    #custom-toc-container {
+        padding-left: 0;
+    }
+
+    #md-editor {
+        padding-left: 430px;
+        padding-right: 0;
+        margin: 0;
+    }
+    .markdown-layout-draggable {
+        position: fixed;
+        cursor: col-resize;
+        width: 16px;
+        height: 100%;
+        z-index: 101;
+        background-color: #e40f0f;
+        opacity: 0.6;
+    }
+</style>
+<script>
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var appId = getQueryString('appId');
+    if(!appId||appId&&appId=='') appId = 'b59e05ced89f43d69ed7d6bdb6c57140';
+    var maxImgWidth = getQueryString('maxImgWidth');
+    var me = localStorage.me ? JSON.parse(localStorage.me) : {token: { access_token: "" }};
+    var access_token = me.token ? me.token.access_token : "";
+    if(!access_token) access_token = getQueryString("userKey") || "";
+    function callMdStr(cb) {
+      jQuery.ajax({
+        url:(window.server || "") + '/v5/ecode/findReadme?appId='+appId+"&access_token="+access_token,
+        dataType:'json',
+        success:function(r) {
+            if(r.status) cb(r.readme||'');
+            else if(!r.status) {
+              // window.location.href = 'https://www.e-cology.com.cn/ecode/doc.jsp?appId=' + appId
+              if (r.code === 118) {
+                window.location.href = 'https://www.e-cology.com.cn/sp/custom/877166969217744896/cloudStoreSso?docId=' + appId
+              } else {
+                jQuery('<div>').appendTo('body').addClass('tips-msg').html(r.msg).show().delay(1200).fadeOut()
+              }
+            }
+        },
+      });
+    }
+    
+    $(function() {
+        var leftWidth = 400;
+        if(/^[0-9]*[1-9][0-9]*$/.test(localStorage.docLeftWidth)) {
+            var lsWidth = parseInt(localStorage.docLeftWidth, 10);
+            if(isNaN(lsWidth)) {
+                leftWidth = lsWidth;
+            }
+        }
+        var isUpfold = true;
+        var $md = $("#md-editor");
+        var $sidebar = $("#sidebar");
+        var $draggable = $(".markdown-layout-draggable");
+        var width = $draggable.width();
+        function setWidth(leftWidth, isInit) {
+            $sidebar.css({width: leftWidth});
+            $md.css({"padding-left": leftWidth + 30});
+            if(isInit) $draggable.css({left: leftWidth - width + 1});
+        }
+        var $draggable = $(".markdown-layout-draggable");
+        // $draggable.dragging({
+        //     move: "x",
+        //     randomPosition: true,
+        //     inWindow: true,
+        //     callback: function(x, y) {
+        //         console.log(x, y)
+        //         setWidth(x + width - 1, false);
+        //     }
+        // });
+        $(".sidebar-upfold").on("click", function(e) {
+            var offsetLeft = isUpfold ? 0 : 400;
+            var mdPaddingLfet = isUpfold ? 30 : 430;
+            $(this).css({"left": offsetLeft});
+            $sidebar.css({"width": offsetLeft, "padding": isUpfold ? 0 : 18});
+            $md.css({"padding-left": mdPaddingLfet});
+            isUpfold = !isUpfold;
+        })
+        callMdStr(function (content, error) {
+            //console.log(content);
+            if(error === "notAccess") {
+                $(".markdown-layout").hide();
+                $("#not-access").show();
+            } else {
+                $(".markdown-layout").show();
+                $("#not-access").hide();
+                showMd(content);
+            }
+        });
+    });
+    function showMd(markdown) {
+      var _editormd = editormd.markdownToHTML("md-editor", {
+        appId           :appId,
+        access_token    :access_token || "",
+        path            : "/ecode/editormd/lib/",
+        markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+        htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+        // htmlDecode      : "style,script,iframe",  // you can filter tags decode
+        toc             : true,
+        tocm            : true,    // Using [TOCM]
+        tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+        //gfm             : false,
+        //tocDropdown     : true,
+        // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+        emoji           : true,
+        taskList        : true,
+        tex             : true,  // 默认不解析
+        flowChart       : true,  // 默认不解析
+        sequenceDiagram : true,  // 默认不解析
+        maxImgWidth: maxImgWidth
+      });
+
+      if(location.href.indexOf('#')>=0) location.href = location.href;
+      var viewer = new Viewer(document.getElementById('md-editor'), {
+        inline: false,
+        viewed() {
+            // setWidth(leftWidth, true);
+        },
+        url(img) {
+          return img.src;
+          // if(img.src.indexOf('cloudstore/release')>=0&&img.src.indexOf('-big.png')<0) {
+          //   return img.src.replace('.png','-big.png');
+          // }
+          // else {
+          //   return img.src;
+          // }
+        }
+      });
+    }
+</script>
+
+</body></html>

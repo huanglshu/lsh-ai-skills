@@ -1,0 +1,86 @@
+2026-04-08 17:24:40,343 [WARNING] python-dotenv could not parse statement starting at line 20
+2026-04-08 17:24:40,343 [WARNING] python-dotenv could not parse statement starting at line 21
+2026-04-08 17:24:40,343 [WARNING] python-dotenv could not parse statement starting at line 22
+2026-04-08 17:24:40,344 [WARNING] python-dotenv could not parse statement starting at line 23
+2026-04-08 17:24:40,344 [WARNING] python-dotenv could not parse statement starting at line 24
+2026-04-08 17:24:40,344 [WARNING] python-dotenv could not parse statement starting at line 25
+2026-04-08 17:24:40,344 [WARNING] python-dotenv could not parse statement starting at line 26
+2026-04-08 17:24:40,344 [WARNING] python-dotenv could not parse statement starting at line 27
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 31
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 32
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 33
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 34
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 35
+2026-04-08 17:24:40,345 [WARNING] python-dotenv could not parse statement starting at line 36
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 37
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 38
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 39
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 40
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 41
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 45
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 46
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 47
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 48
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 49
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 50
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 51
+2026-04-08 17:24:40,346 [WARNING] python-dotenv could not parse statement starting at line 53
+2026-04-08 17:24:40,378 [INFO] 已从环境变量加载默认提出人映射（project_id_count=0, project_name_count=1）
+2026-04-08 17:24:40,379 [INFO] 检测到 .env 凭据，自动登录中...
+2026-04-08 17:24:40,480 [INFO] 正在获取登录页面 token...
+2026-04-08 17:24:40,517 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/login?enforceLogin=1 "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,519 [INFO] 成功获取 token（client_id=6c857900-4e22-11e6-9048-612818fa8b4c）
+2026-04-08 17:24:40,519 [INFO] 正在登录（email=echizen_hua@163.com）...
+2026-04-08 17:24:40,597 [INFO] HTTP Request: POST https://i2m.gdalpha.com:4431/api/login/email "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,597 [INFO] 登录请求成功，正在验证...
+2026-04-08 17:24:40,645 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/users/me "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,645 [INFO] 登录成功：李光华（5bea5a57be825b33ab9afacb）
+2026-04-08 17:24:40,645 [INFO] 正在查询项目配置（project=60e6912e8eb2da2a576f2abb）...
+2026-04-08 17:24:40,687 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/tasklists?_projectId=60e6912e8eb2da2a576f2abb "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,688 [INFO]   tasklist: 60e6912f48e0c0004193b9e2
+2026-04-08 17:24:40,737 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/projects/60e6912e8eb2da2a576f2abb/scenariofieldconfigs "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,738 [INFO]   scenariofieldconfig: 60e6912f8eb2da2a576f2ad7
+2026-04-08 17:24:40,768 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/taskflows/60e6912e48e0c0004193b9ba "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,768 [INFO]   taskflow: 60e6912e48e0c0004193b9ba, defaultStage: None
+2026-04-08 17:24:40,831 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=false&pageSize=1 "HTTP/1.1 200 OK"
+2026-04-08 17:24:40,831 [INFO]   from existing task: stageId=60e6912f48e0c0004193b9e5, taskflowstatusId=69a165848e2e9a001c0f3625
+2026-04-08 17:24:41,065 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/customfields/693793de7ad8b6f61a769edc "HTTP/1.1 200 OK"
+2026-04-08 17:24:41,392 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/customfields/5d1b3638ce9f165cd5d980b5 "HTTP/1.1 200 OK"
+2026-04-08 17:24:41,830 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/customfields/60e2782a8eb2da2a576efc39 "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,048 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/customfields/693793817ad8b6f61a769ed7 "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,048 [INFO] 创建任务备注与开发人天解析（dev_days_input=None, dev_days_resolved=1, dev_days_field=None）
+2026-04-08 17:24:42,459 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/projects?selectBy=joined&orderBy=name&pageSize=100&_organizationId=5be50c1ebe825b60a7ad0894 "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,493 [INFO] 项目名称缓存已刷新（count=51）
+2026-04-08 17:24:42,496 [INFO] 按项目名称命中默认提出人配置（project=60e6912e8eb2da2a576f2abb, project_name=协同系统）
+2026-04-08 17:24:42,556 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/organizations/5be50c1ebe825b60a7ad0894/members/search?q=%E6%9D%8E%E6%96%AF%E6%B5%A9 "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,557 [INFO] 创建任务提出人解析（project=60e6912e8eb2da2a576f2abb, has_involver_ids=False, use_default=True）
+2026-04-08 17:24:42,557 [INFO] 创建任务执行者解析（executor_id=<empty>, configured_executor=登录用户, current_user_id=5bea5a57be825b33ab9afacb）
+2026-04-08 17:24:42,557 [INFO] 未指定执行者，默认使用当前登录用户: 5bea5a57be825b33ab9afacb
+2026-04-08 17:24:42,557 [INFO] 正在创建任务（project=60e6912e8eb2da2a576f2abb, content=【规则回填测试】协同系统-1775640280）...
+2026-04-08 17:24:42,602 [INFO] HTTP Request: POST https://i2m.gdalpha.com:4431/api/v2/tasks "HTTP/1.1 400 Bad Request"
+2026-04-08 17:24:42,602 [INFO] 创建任务命中InvalidTaskflowstatusKind，回退stageId重试（project=60e6912e8eb2da2a576f2abb, stageId=60e6912f48e0c0004193b9e5）
+2026-04-08 17:24:42,759 [INFO] HTTP Request: POST https://i2m.gdalpha.com:4431/api/v2/tasks "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,760 [INFO] 任务创建成功：【规则回填测试】协同系统-1775640280（ID: 69d61eea8e2e9a001c181908）
+2026-04-08 17:24:42,792 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/customfields/60e2782a8eb2da2a576efc39 "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,891 [INFO] HTTP Request: PUT https://i2m.gdalpha.com:4431/api/tasks/69d61eea8e2e9a001c181908/customfields "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,891 [INFO] 正在刷新项目迭代缓存（project=60e6912e8eb2da2a576f2abb）...
+2026-04-08 17:24:42,933 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/projects/60e6912e8eb2da2a576f2abb/sprints "HTTP/1.1 200 OK"
+2026-04-08 17:24:42,934 [INFO] 项目迭代缓存刷新完成（project=60e6912e8eb2da2a576f2abb, count=24）
+2026-04-08 17:24:43,116 [INFO] HTTP Request: PUT https://i2m.gdalpha.com:4431/api/v2/tasks/69d61eea8e2e9a001c181908 "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,140 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/customfields/5d1b3638ce9f165cd5d980b5 "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,206 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=false&pageSize=100 "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,491 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=true&pageSize=100 "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,717 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=true&pageSize=100&pageToken=0a0f66c2-d3d4-4091-b06f-a177a4c4cc8a "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,864 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=true&pageSize=100&pageToken=04dc8038-f0f5-4ea0-b2db-9ead7029e11e "HTTP/1.1 200 OK"
+2026-04-08 17:24:43,987 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=true&pageSize=100&pageToken=a5daa95e-d1ba-48b6-b914-7f4dac8adc74 "HTTP/1.1 200 OK"
+2026-04-08 17:24:44,138 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/v2/tasks?_projectId=60e6912e8eb2da2a576f2abb&isDone=true&pageSize=100&pageToken=6183c532-c8d3-474c-b7f3-09fc820320a4 "HTTP/1.1 200 OK"
+2026-04-08 17:24:44,237 [INFO] HTTP Request: PUT https://i2m.gdalpha.com:4431/api/tasks/69d61eea8e2e9a001c181908/customfields "HTTP/1.1 200 OK"
+2026-04-08 17:24:44,237 [INFO] 项目未配置开发人天字段，跳过回填（project=60e6912e8eb2da2a576f2abb）
+2026-04-08 17:24:44,237 [INFO] 正在添加参与者（task=69d61eea8e2e9a001c181908, users=['6201dfacd099c9180045665f', '5bea5a57be825b33ab9afacb']）...
+2026-04-08 17:24:44,307 [INFO] HTTP Request: PUT https://i2m.gdalpha.com:4431/api/tasks/69d61eea8e2e9a001c181908/involveMembers "HTTP/1.1 200 OK"
+2026-04-08 17:24:44,307 [INFO] 参与者添加成功，当前 2 人
+2026-04-08 17:24:44,395 [INFO] HTTP Request: GET https://i2m.gdalpha.com:4431/api/tasks/69d61eea8e2e9a001c181908 "HTTP/1.1 200 OK"
+create_result= {"status": "success", "_id": "69d61eea8e2e9a001c181908", "content": "【规则回填测试】协同系统-1775640280", "uniqueId": 776, "_projectId": "60e6912e8eb2da2a576f2abb", "created": "2026-04-08T09:24:58.466Z", "defaultProposer": {"name": "李斯浩", "memberId": "6201dfac3c6da67e23b278c4", "userId": "6201dfacd099c9180045665f"}, "proposerCustomFieldUpdated": true, "devDays": "1", "devDaysFieldUpdated": false, "ruleFieldUpdates": [{"field": "提出人", "type": "dropDown", "status": "success"}, {"field": "备注", "type": "note", "status": "success"}, {"field": "迭代", "type": "sprint", "status": "success", "value": "泛微OA_2026"}, {"field": "需求分类", "type": "commongroup", "status": "success", "value": "泛微OA与企微"}], "involvers": [{"_id": "5bea5a57be825b33ab9afacb", "name": "李光华"}, {"_id": "6201dfacd099c9180045665f", "name": "李斯浩"}]}
+task_id= 69d61eea8e2e9a001c181908
+sprint= {'_id': '69a1620b49a68c003123175c', 'name': '泛微OA_2026', 'status': 'active'}
+customfields= [{"values": [], "value": [{"title": "李斯浩"}], "_customfieldId": "60e2782a8eb2da2a576efc39", "type": "dropDown"}, {"values": [], "value": [{"_id": "60e693efa8aed20013f08287", "title": "泛微OA与企微"}], "_customfieldId": "5d1b3638ce9f165cd5d980b5", "type": "commongroup"}]
