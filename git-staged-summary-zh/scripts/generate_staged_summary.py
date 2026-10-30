@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate standardized Chinese descriptions for staged git changes."""
+"""Generate standardized Chinese descriptions for Git changes."""
 
 from __future__ import annotations
 
@@ -72,9 +72,9 @@ class FileChange:
         return self.added + self.deleted
 
 
-def run_git(repo: Path, *args: str) -> str:
+def run_git(repo: Path, *args: str, allow_diff: bool = False) -> str:
     result = subprocess.run(
-        ["git", "-C", str(repo), *args],
+        ["git", "-C", str(repo), "-c", "core.quotepath=false", *args],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
@@ -82,58 +82,52 @@ def run_git(repo: Path, *args: str) -> str:
         errors="replace",
         check=False,
     )
-    if result.returncode != 0:
+    if result.returncode != 0 and not (allow_diff and result.returncode == 1):
         message = result.stderr.strip() or "git command failed"
         raise RuntimeError(f"git {' '.join(args)} failed: {message}")
     return result.stdout
 
 
 def normalize_path(path: str) -> str:
-    return path.strip().replace("\\", "/")
+    return path.replace("\\", "/")
 
 
-def parse_name_status(repo: Path) -> list[FileChange]:
-    output = run_git(repo, "diff", "--cached", "--name-status", "-M", "-C")
+def diff_options(staged: bool) -> list[str]:
+    return ["--cached"] if staged else []
+
+
+def parse_name_status(repo: Path, staged: bool) -> list[FileChange]:
+    output = run_git(repo, "diff", *diff_options(staged), "--name-status", "-z", "-M", "-C", "--", ":/")
     changes: list[FileChange] = []
-    for raw in output.splitlines():
-        if not raw.strip():
-            continue
-        parts = raw.split("\t")
-        status_raw = parts[0].strip()
+    fields = iter(output.split("\0"))
+    for status_raw in fields:
+        if not status_raw:
+            break
         status = status_raw[0] if status_raw else "M"
-        if status in {"R", "C"} and len(parts) >= 3:
-            old_path = normalize_path(parts[1])
-            new_path = normalize_path(parts[2])
+        path = normalize_path(next(fields))
+        if status in {"R", "C"}:
+            old_path = path
+            new_path = normalize_path(next(fields))
             changes.append(FileChange(status=status, path=new_path, old_path=old_path))
-        elif len(parts) >= 2:
-            changes.append(FileChange(status=status, path=normalize_path(parts[1])))
+        else:
+            changes.append(FileChange(status=status, path=path))
     return changes
 
 
-def resolve_rename_path(path_field: str) -> str:
-    text = path_field.strip()
-    if " => " not in text:
-        return normalize_path(text)
-    if "{" in text and "}" in text:
-        before, rest = text.split("{", 1)
-        inner, after = rest.split("}", 1)
-        if " => " in inner:
-            _, new_part = inner.split(" => ", 1)
-            return normalize_path(before + new_part + after)
-    return normalize_path(text.split(" => ", 1)[1])
-
-
-def parse_numstat(repo: Path) -> dict[str, tuple[int | None, int | None, bool]]:
-    output = run_git(repo, "diff", "--cached", "--numstat", "-M", "-C")
+def parse_numstat_output(output: str) -> dict[str, tuple[int | None, int | None, bool]]:
     stat_map: dict[str, tuple[int | None, int | None, bool]] = {}
-    for raw in output.splitlines():
-        if not raw.strip():
-            continue
+    fields = iter(output.split("\0"))
+    for raw in fields:
+        if not raw:
+            break
         parts = raw.split("\t", 2)
         if len(parts) != 3:
             continue
         add_s, del_s, path_field = parts
-        path = resolve_rename_path(path_field)
+        if not path_field:
+            next(fields)
+            path_field = next(fields)
+        path = normalize_path(path_field)
         if add_s == "-" or del_s == "-":
             stat_map[path] = (None, None, True)
             continue
@@ -142,6 +136,11 @@ def parse_numstat(repo: Path) -> dict[str, tuple[int | None, int | None, bool]]:
         except ValueError:
             stat_map[path] = (None, None, True)
     return stat_map
+
+
+def parse_numstat(repo: Path, staged: bool) -> dict[str, tuple[int | None, int | None, bool]]:
+    output = run_git(repo, "diff", *diff_options(staged), "--numstat", "-z", "-M", "-C", "--", ":/")
+    return parse_numstat_output(output)
 
 
 DECLARATION_PATTERNS: list[tuple[re.Pattern[str], str]] = [
@@ -159,14 +158,15 @@ def normalize_symbol(raw: str) -> str:
     return value[:80]
 
 
-def parse_symbols(repo: Path, max_symbols_per_file: int = 3) -> dict[str, list[str]]:
-    diff = run_git(repo, "diff", "--cached", "-M", "-C", "--unified=0", "--no-color")
+def symbols_from_diff(diff: str, fixed_path: str | None = None, max_symbols_per_file: int = 3) -> dict[str, list[str]]:
     symbols: dict[str, list[str]] = defaultdict(list)
     seen: dict[str, set[str]] = defaultdict(set)
-    current_path: str | None = None
+    current_path: str | None = fixed_path
 
     for line in diff.splitlines():
         if line.startswith("diff --git "):
+            if fixed_path is not None:
+                continue
             match = re.match(r"^diff --git a/(.+) b/(.+)$", line)
             if match:
                 left = normalize_path(match.group(1))
@@ -202,6 +202,12 @@ def parse_symbols(repo: Path, max_symbols_per_file: int = 3) -> dict[str, list[s
         if len(symbols[current_path]) >= max_symbols_per_file:
             symbols[current_path] = symbols[current_path][:max_symbols_per_file]
     return symbols
+
+
+def parse_symbols(repo: Path, staged: bool) -> dict[str, list[str]]:
+    diff = run_git(repo, "diff", *diff_options(staged), "-M", "-C", "--unified=0",
+                   "--no-color", "--no-ext-diff", "--no-textconv", "--", ":/")
+    return symbols_from_diff(diff)
 
 
 def classify_file_kind(path: str) -> str:
@@ -372,9 +378,10 @@ def build_risks(changes: list[FileChange]) -> list[str]:
     return [f"- {item}" for item in risks]
 
 
-def generate_report(changes: list[FileChange], max_files: int) -> str:
+def generate_report(groups: list[tuple[str, list[FileChange]]], max_files: int, staged_only: bool) -> str:
+    changes = [item for _, group in groups for item in group]
     if not changes:
-        return "未检测到暂存区变更，工作区也没有可暂存的变更。"
+        return "未检测到暂存区变更。" if staged_only else "未检测到 Git 变更。"
 
     change_type = infer_change_type(changes)
     display_scope, scope = pick_scope(changes)
@@ -387,18 +394,35 @@ def generate_report(changes: list[FileChange], max_files: int) -> str:
     binary_count = sum(1 for item in changes if item.binary)
 
     binary_suffix = f"，二进制文件 {binary_count} 个" if binary_count else ""
-    file_details = "\n".join(summarize_files(changes, max_files=max_files))
+    details = []
+    remaining = max_files
+    for label, group in groups:
+        if not group:
+            continue
+        details.append(f"### {label}")
+        if remaining:
+            shown = min(remaining, len(group))
+            details.extend(summarize_files(group, max_files=shown)[:shown])
+            remaining -= shown
+        else:
+            details.append("- 此类变更的文件明细已省略。")
+    omitted = max(0, len(changes) - max_files)
+    if omitted:
+        details.append(f"- 共省略 {omitted} 条变更明细，可增大 `--max-files` 查看。")
+    file_details = "\n".join(details)
     risk_text = "\n".join(build_risks(changes))
 
     return (
-        "# 暂存区变更中文描述\n\n"
+        "# Git 变更中文描述\n\n"
         "## 一句话概述\n"
         f"{overview}\n\n"
         "## 建议提交信息\n"
         f"`{commit_line}`\n\n"
+        + ("" if staged_only else "此建议涵盖下列全部变更；提交前需暂存希望提交的内容。\n\n")
+        +
         "## 详细说明\n"
         f"- 变更类型：`{change_type}`\n"
-        f"- 影响文件：{len(changes)} 个（新增 {status_counter['A']}，修改 {status_counter['M']}，删除 {status_counter['D']}，重命名 {status_counter['R']}，复制 {status_counter['C']}）\n"
+        f"- 变更条目：{len(changes)} 条（新增 {status_counter['A']}，修改 {status_counter['M']}，删除 {status_counter['D']}，重命名 {status_counter['R']}，复制 {status_counter['C']}）；同一文件的已暂存和未暂存改动分别计数。\n"
         f"- 行数统计：+{total_add} / -{total_del}{binary_suffix}\n"
         "- 主要改动：\n"
         f"{file_details}\n\n"
@@ -407,9 +431,11 @@ def generate_report(changes: list[FileChange], max_files: int) -> str:
     )
 
 
-def enrich_changes(repo: Path, changes: list[FileChange]) -> list[FileChange]:
-    stat_map = parse_numstat(repo)
-    symbol_map = parse_symbols(repo)
+def enrich_changes(repo: Path, changes: list[FileChange], staged: bool) -> list[FileChange]:
+    if not changes:
+        return changes
+    stat_map = parse_numstat(repo, staged)
+    symbol_map = parse_symbols(repo, staged)
     for item in changes:
         stats = stat_map.get(item.path)
         if stats:
@@ -419,13 +445,33 @@ def enrich_changes(repo: Path, changes: list[FileChange]) -> list[FileChange]:
     return changes
 
 
-def validate_repo(repo: Path) -> None:
-    run_git(repo, "rev-parse", "--is-inside-work-tree")
+def untracked_changes(repo: Path) -> list[FileChange]:
+    paths = run_git(repo, "ls-files", "--others", "--exclude-standard", "-z", "--", ":/").split("\0")
+    changes = []
+    for path in filter(None, paths):
+        item = FileChange(status="A", path=normalize_path(path))
+        stats_output = run_git(repo, "diff", "--no-index", "--numstat", "-z",
+                               "--", "/dev/null", path, allow_diff=True)
+        stats = parse_numstat_output(stats_output)
+        if stats:
+            item.added, item.deleted, item.binary = next(iter(stats.values()))
+        item.kind = classify_file_kind(item.path)
+        if not item.binary:
+            diff = run_git(repo, "diff", "--no-index", "--unified=0", "--no-color",
+                           "--no-ext-diff", "--no-textconv", "--", "/dev/null", path,
+                           allow_diff=True)
+            item.symbols = symbols_from_diff(diff, fixed_path=item.path).get(item.path, [])
+        changes.append(item)
+    return changes
+
+
+def validate_repo(repo: Path) -> Path:
+    return Path(run_git(repo, "rev-parse", "--show-toplevel").rstrip("\n")).resolve()
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="提取当前项目暂存区（staged）变更并生成规范中文描述。"
+        description="提取当前项目已暂存、未暂存和未跟踪的变更并生成中文描述。"
     )
     parser.add_argument(
         "--repo",
@@ -442,6 +488,11 @@ def parse_args() -> argparse.Namespace:
         "--output",
         default="",
         help="输出文件路径；为空时打印到标准输出。",
+    )
+    parser.add_argument(
+        "--staged-only",
+        action="store_true",
+        help="仅总结已暂存的变更。",
     )
     return parser.parse_args()
 
@@ -460,14 +511,13 @@ def main() -> int:
         return 2
 
     try:
-        validate_repo(repo)
-        changes = parse_name_status(repo)
-        if not changes:
-            print("暂存区为空，正在暂存仓库内的所有变更（git add -A）。", file=sys.stderr)
-            run_git(repo, "add", "-A", "--", ":/")
-            changes = parse_name_status(repo)
-        enrich_changes(repo, changes)
-        report = generate_report(changes, max_files=args.max_files)
+        repo = validate_repo(repo)
+        staged = enrich_changes(repo, parse_name_status(repo, staged=True), staged=True)
+        groups = [("已暂存变更", staged)]
+        if not args.staged_only:
+            unstaged = enrich_changes(repo, parse_name_status(repo, staged=False), staged=False)
+            groups.extend([("未暂存变更", unstaged), ("未跟踪文件", untracked_changes(repo))])
+        report = generate_report(groups, max_files=args.max_files, staged_only=args.staged_only)
     except Exception as exc:  # noqa: BLE001
         print(f"生成失败：{exc}", file=sys.stderr)
         return 1

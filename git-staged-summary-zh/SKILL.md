@@ -1,11 +1,11 @@
 ---
 name: git-staged-summary-zh
-description: 自动提取当前 Git 仓库暂存区（staged）代码变更并生成结构化中文描述（概述、建议 commit message、详细变更和风险建议）。当用户提到“总结暂存区变更”“根据 git add 内容生成提交说明”“生成中文提交描述”“为 staged diff 写 commit 文案”等场景时使用。
+description: 自动总结 Git 仓库已暂存、未暂存和未跟踪的变更，生成中文概述、建议 commit message、详细变更和风险建议。用户要求总结 Git 改动、工作区变更、暂存区变更、未暂存内容或生成中文提交说明时使用。
 ---
 
-# Git 暂存区中文描述生成
+# Git 变更中文描述生成
 
-用于把暂存区改动自动转换为统一格式的中文变更说明，减少手工整理提交描述的成本。暂存区为空时，会自动暂存整个仓库的变更。
+用于将整个 Git 仓库的改动转换为中文变更说明。默认包含已暂存、已跟踪但未暂存的改动，以及未被 Git 忽略的未跟踪文件；不会执行 `git add` 或修改暂存区。
 
 ## 快速执行
 
@@ -25,12 +25,13 @@ python <skill-dir>\scripts\generate_staged_summary.py --repo . --output .\staged
 
 - `--max-files`：最多展示的文件明细数，默认 `8`
 - `--output`：输出文件路径；不传则打印到标准输出
+- `--staged-only`：仅总结已暂存的变更
 
 ## 标准流程
 
-1. 如需仅总结指定文件，先在目标项目中执行 `git add`。
-2. 运行 `generate_staged_summary.py`。若暂存区为空，脚本先执行 `git add -A -- :/`，暂存整个仓库的新增、修改和删除，再提取 `git diff --cached`；若已有暂存内容，则不会额外暂存文件。
-3. 直接使用输出中的“建议提交信息”作为 commit message，或按需微调。
+1. 在目标项目中运行 `generate_staged_summary.py`，无需事先执行 `git add`。如果用户明确只要求总结暂存区，添加 `--staged-only`。
+2. 按已暂存、未暂存和未跟踪文件分别检查输出；同一文件两种状态的改动会分别列出。
+3. 按需微调建议提交信息。实际执行 `git commit` 前，仍需将希望提交的改动暂存；默认建议提交信息涵盖全部列出的改动，并非仅代表当前暂存区。
 
 ## 输出结构
 
@@ -43,7 +44,9 @@ python <skill-dir>\scripts\generate_staged_summary.py --repo . --output .\staged
 
 ## 识别规则（摘要）
 
-- 分析暂存区：`git diff --cached`；暂存区为空时先自动暂存整个仓库的变更
+- 分析暂存区 `git diff --cached`、已跟踪文件的工作区改动 `git diff`，以及 `git ls-files --others --exclude-standard` 返回的未跟踪文件
+- 排除被 Git 忽略的未跟踪文件；已跟踪文件即使匹配忽略规则仍会正常分析
+- 分析过程不修改暂存区或工作区；指定 `--output` 时会写入输出文件
 - 自动识别文件类型：源码、测试、文档、配置、其他
 - 优先从目录和改动模式推断 `type`：`feat/fix/refactor/docs/test/chore`
 - 尝试从 diff 中抽取函数/类/方法标识，补充“主要改动”描述
@@ -52,6 +55,5 @@ python <skill-dir>\scripts\generate_staged_summary.py --repo . --output .\staged
 ## 失败与边界处理
 
 - 若目录不是 Git 仓库，脚本会报错退出。
-- 若自动暂存后仍无变更，输出明确提示“未检测到暂存区变更”。
-- 若自动暂存失败，脚本会报错退出。
+- 若指定范围内无变更，输出明确提示。
 - 若变更文件过多，仅展示前 `--max-files` 个，其余以计数省略。
