@@ -939,6 +939,13 @@ def verify_rendered_assets(
 ) -> dict[str, Any]:
     if not assets:
         return {"status": "not_applicable", "rendered": 0, "downloaded": 0}
+    if mcp.transport == "streamable-http":
+        return {
+            "status": "skipped",
+            "rendered": 0,
+            "downloaded": 0,
+            "reason": "Resource display verification is skipped for streamable-http MCP.",
+        }
     rendered = client.call_tool("get_page", {"page_id": page_id, "mode": "rendered"})
     html = rendered.get("render") if isinstance(rendered, dict) else None
     if not isinstance(html, str):

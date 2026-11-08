@@ -86,15 +86,15 @@ host, port and persistent configuration are unchanged. Without `--scheme`,
 the configured URL is used exactly as-is. Never silently downgrade HTTPS:
 HTTP can expose credentials and document contents, especially off localhost.
 
-After publishing, the script reads the rendered page and confirms each
-referenced image or attachment appears as the intended image or link. It then
-downloads each resource from the configured Wiki.js origin with the MCP's
-Wiki.js credentials and compares its bytes to the local file. It does not
+For a stdio MCP, after publishing, the script reads the rendered page and
+confirms each referenced image or attachment appears as the intended image or
+link. It then downloads each resource from the configured Wiki.js origin with
+the MCP's Wiki.js credentials and compares its bytes to the local file. For a
+streamable-http MCP, remote resource display verification is skipped. It does not
 follow redirects, change protocols, or send credentials to other origins.
-This verifies the server-rendered HTML and file contents, not the display in
-every reader's browser or that reader's permissions. If the connection or
-credentials needed to download files are unavailable, report verification as
-incomplete, not as success. A failed check may occur after the page was written.
+For stdio MCPs, if the connection or credentials needed to download files are
+unavailable, report verification as incomplete, not as success. A failed check
+may occur after the page was written.
 
 To recheck an already-published page without changing it:
 

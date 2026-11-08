@@ -47,9 +47,10 @@ asset-delete tools.
   approval prompts. Use non-destructive tools or grant the required scope.
 
 The publisher constructs root-relative URLs from the actual folder slugs and
-filenames returned by Wiki.js. It verifies rendered HTML through `get_page`
-and, for stdio servers with `WIKIJS_URL` and `WIKIJS_TOKEN` or
-`WIKIJS_API_KEY`, downloads each resource with the same credentials and
-compares its digest. Missing endpoint or credentials leaves the download check
-incomplete; an MCP-only HTTP endpoint does not establish the Wiki.js origin.
-The publisher rejects redirects during credentialed checks.
+filenames returned by Wiki.js. For stdio servers, it verifies rendered HTML
+through `get_page` and, when `WIKIJS_URL` and `WIKIJS_TOKEN` or
+`WIKIJS_API_KEY` are configured, downloads each resource with the same
+credentials and compares its digest (missing endpoint or credentials on stdio
+leaves the download check incomplete). For `streamable-http` MCP servers,
+remote resource display verification is skipped. The publisher rejects
+redirects during credentialed checks.
