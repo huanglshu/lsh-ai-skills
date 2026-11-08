@@ -5,21 +5,19 @@ import re
 import sys
 
 
-# 按优先级查找 SDK 文档：环境变量 > 相对路径（分发包） > 绝对路径（本地开发）
+# 按优先级查找 SDK 文档：环境变量 > 相对路径（skill 内置 sdk-doc/）
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _RELATIVE_SDK_PATH = os.path.join(_SCRIPT_DIR, "..", "sdk-doc", "泛微在线文档前端SDK.html")
-_LOCAL_SDK_PATH = "/Users/caizhijian/aofei/泛微技术资料/泛微在线文档前端SDK.html"
 
 def _resolve_sdk_path():
     paths = [
         os.environ.get("WEAVER_OA_SDK_HTML"),
         os.path.normpath(_RELATIVE_SDK_PATH),
-        _LOCAL_SDK_PATH,
     ]
     for p in paths:
         if p and os.path.exists(p):
             return p
-    return _RELATIVE_SDK_PATH  # 返回相对路径，便于报错定位
+    return os.path.normpath(_RELATIVE_SDK_PATH)  # 返回相对路径，便于报错定位
 
 DEFAULT_SDK_PATH = _resolve_sdk_path()
 
