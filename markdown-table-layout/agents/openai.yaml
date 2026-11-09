@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown 表格排版"
+  short_description: "紧凑排版并安全检查 Markdown 宽表格与自动换行"
+  default_prompt: "使用 $markdown-table-layout 检查并优化 Markdown 表格，保留原有内容。"
