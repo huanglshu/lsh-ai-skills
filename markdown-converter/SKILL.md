@@ -1,6 +1,6 @@
 ---
 name: markdown-converter
-description: "Convert PDF, Office, HTML, data, images, audio, ZIP, and YouTube content to Markdown, and optimize eligible table layouts after conversion."
+description: "Convert PDF, Office, HTML, data, images, audio, ZIP, and YouTube content to Markdown, preserving code examples and optimizing eligible table layouts after conversion."
 ---
 
 # Markdown Converter
@@ -46,6 +46,27 @@ source-directory/
   Do not overwrite unrelated existing files; use the next available sequence
   number when a name is taken.
 
+## Preserve Code Examples
+
+After conversion, inspect the source and generated Markdown for standalone
+shell scripts, JSON, SQL, other code, and interface payloads outside tables,
+even when the document has no tables. Where the source clearly identifies a
+snippet and its boundaries, present it as a fenced code block. This is a
+separate content-review step, not a feature of the table formatter.
+
+- Preserve the original code, line order, indentation, whitespace, escapes and
+  surrounding explanation. Do not execute, repair, reformat or invent code.
+  Keep existing code blocks and ordinary inline identifiers as they are.
+- Use a language tag such as `shell`, `json` or `sql` only when the language
+  is clear; otherwise use an untagged fence. Choose a fence character and
+  length that cannot be closed by the snippet's contents.
+- Compare the block with the source. If code or its boundaries cannot be
+  recovered reliably, for example after poor PDF extraction or OCR, preserve
+  the available text and report the limitation instead of guessing.
+- Apply this step independently of table layout and HTML support. For
+  stdout-only output, review a temporary Markdown file and emit its contents
+  without creating a persistent output file.
+
 ## Optimize Tables
 
 After conversion and before final attachment verification or publication,
@@ -83,7 +104,7 @@ optimization, including HTML `src` and `href` attributes generated in tables.
 
 ## Verify Attachments
 
-After table optimization, verify that every referenced attachment renders
+After code and table optimization, verify that every referenced attachment renders
 correctly before reporting success. A filename being present on disk is not
 enough.
 

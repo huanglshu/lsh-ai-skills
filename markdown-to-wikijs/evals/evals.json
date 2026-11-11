@@ -1,0 +1,48 @@
+{
+  "skill_name": "markdown-to-wikijs",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把一份包含宽表格和请求响应示例的 Word 文档发布到 Wiki.js 的 manuals/api-guide。",
+      "expected_output": "先本地转换为 Markdown，按转换和表格技能检查代码、报文、表格及附件，再制定发布计划。",
+      "files": [],
+      "expectations": [
+        "非 Markdown 和 HTML 的源文件先转换为 Markdown",
+        "发布计划前检查表格和请求响应示例",
+        "验证附件并报告未能完成的优化"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "把已有的 Markdown 文档发布到 Wiki.js 的 manuals/guide，保留原有格式。",
+      "expected_output": "直接以已有 Markdown 制定发布计划，不强制转换或优化表格，保留既有附件验证。",
+      "files": [],
+      "expectations": [
+        "已有 Markdown 不被强制重新转换或排版",
+        "制定计划前检查本地附件"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "把本地 HTML 文档发布到 Wiki.js，但我不确定目标 Markdown 编辑器是否支持其中的 HTML。",
+      "expected_output": "说明发布器使用 Markdown 编辑器，在无法确认 HTML 兼容性时停止并询问，不擅自转换或发布。",
+      "files": [],
+      "expectations": [
+        "不把现有发布器描述为原生 HTML 编辑器",
+        "HTML 兼容性未知时不发布",
+        "转换 HTML 或采用其他发布方式前询问用户"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "发布 PDF 到 Wiki.js 的 manuals/report，但转换工具不可用。",
+      "expected_output": "停止发布并说明转换失败，不把 PDF 当作 Markdown 传给发布器，也不静默安装依赖。",
+      "files": [],
+      "expectations": [
+        "转换不可用时不执行远端写入",
+        "不将 PDF 当作 Markdown 输入",
+        "未静默安装依赖"
+      ]
+    }
+  ]
+}

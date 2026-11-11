@@ -1,12 +1,12 @@
 ---
 name: markdown-to-wikijs
-description: Convert a document to Markdown and publish it and its images or PDF attachments to Wiki.js through a named MCP server. Use when the user asks to convert a file and upload or publish it to Wiki.js, or publish existing Markdown with attachments.
+description: Convert and optimize documents for publication to Wiki.js, including images and PDF attachments, through a named MCP server. Use when the user asks to publish a document, existing Markdown, or compatible HTML to Wiki.js.
 ---
 
 # Markdown to Wiki.js
 
-Convert locally using the `markdown-converter` skill, then publish through the
-configured Wiki.js MCP only when the user requests publication.
+Prepare documents locally, then publish through the configured Wiki.js MCP
+only when the user requests publication.
 
 ## Configuration
 
@@ -26,16 +26,40 @@ does not itself configure an MCP server.
 
 ## Conversion and destination
 
-Read and follow the `markdown-converter` skill. Verify local attachments before
-publishing. Ask for the complete Wiki.js page path if the user has not given
-it, for example `manuals/user-guide`. Do not infer a destination or interpret
-the supplied path as merely a parent directory.
+Identify the input format before planning publication:
+
+- For a source that is neither Markdown nor HTML, read and follow both the
+  `markdown-converter` and `markdown-table-layout` skills. Convert the source
+  locally to Markdown, review standalone code and request/response examples,
+  and optimize eligible tables before creating the Wiki.js publication plan.
+  If the converter already completed a layout step, verify the result rather
+  than repeating it. Follow the layout skill's plan-and-apply procedure, content
+  checks, renderer compatibility rules, and skipped-table reporting.
+- Existing Markdown can be used directly; do not rewrite it merely because it
+  is being published. Apply optional layout changes only when requested.
+- For HTML, conversion is not automatically required. The bundled publisher
+  always sends content to the Wiki.js **Markdown** editor, not a native HTML
+  editor. Use HTML as input only when the target Markdown renderer's HTML
+  support and the resulting content and attachment references can be verified.
+  Review the publication plan because planning also normalizes adjacent bold
+  spans. If compatibility cannot be established, stop and ask before
+  converting the HTML to Markdown or using another publication method.
+
+Do not pass an unconverted non-Markdown/non-HTML source to the publisher as
+Markdown. If conversion fails, stop and report the problem. If a required
+optimization cannot be performed, report the reason and ask before publishing
+without it; preserve unsafe or unsupported tables as directed by the layout
+skill and disclose skipped items. Do not install missing dependencies silently.
+
+Verify the resulting document and its local attachments before publishing. Ask
+for the complete Wiki.js page path if the user has not given it, for example
+`manuals/user-guide`. Do not infer a destination or interpret the supplied path
+as merely a parent directory.
 
 Choose a meaningful English name for the document from its title or filename,
 translating Chinese names as needed. Use lowercase English letters, digits and
 hyphens, for example `user-guide`. The publisher stores attachments in
-`assets/<english-document-name>/` independently of the page path. Existing
-Markdown is also accepted.
+`assets/<english-document-name>/` independently of the page path.
 
 After converting, run `python scripts/publish_wikijs.py normalize --markdown
 "<markdown-file>"` to merge adjacent bold spans produced by conversion. The
